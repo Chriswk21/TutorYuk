@@ -11,7 +11,7 @@ export class TutorRegistrationController {
     return await this.service.register(dto);
   }
 
-  @Get() // Buat admin ngecek siapa aja yang daftar
+  @Get()
   async getAll() {
     return await this.service.findAll();
   }

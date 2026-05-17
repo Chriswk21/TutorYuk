@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <!-- Navbar Modern -->
     <nav class="navbar">
       <div class="nav-container">
-        <!-- Logo & Nama Brand -->
         <router-link to="/" class="brand-container">
           <img src="./assets/logo.png" alt="TutorDek Logo" class="nav-logo">
           <span class="brand-name">Tutor<span>Dek</span></span>
@@ -13,15 +11,16 @@
           <router-link to="/" class="nav-item">Home</router-link>
           <router-link to="/search" class="nav-item">Cari Tutor</router-link>
 
-          <!-- TAMPILAN JIKA BELUM LOGIN -->
           <template v-if="!isLoggedIn">
             <router-link to="/register" class="nav-item">Daftar</router-link>
             <router-link to="/login" class="btn-login">Login</router-link>
           </template>
 
-          <!-- TAMPILAN JIKA SUDAH LOGIN (DASHBOARD DINAMIS) -->
           <template v-else>
-            <!-- Link Dashboard Berdasarkan Role -->
+            <router-link to="/saved-tutors" class="nav-item">
+              Tersimpan
+            </router-link>
+
             <router-link v-if="userRole === 'tutee'" to="/tutee/dashboard" class="nav-item dash-link">
               My Learning
             </router-link>
@@ -58,11 +57,9 @@ import TheFooter from './components/TheFooter.vue'
 const router = useRouter()
 const route = useRoute()
 
-// State Reaktif
 const isLoggedIn = ref(false)
 const userRole = ref('')
 
-// Fungsi untuk cek status login dari LocalStorage
 const checkLoginStatus = () => {
   const status = localStorage.getItem('userLoggedIn')
   const role = localStorage.getItem('userRole')
@@ -76,13 +73,10 @@ const checkLoginStatus = () => {
   }
 }
 
-// Cek status saat pertama kali load
 onMounted(() => {
   checkLoginStatus()
 })
 
-// PENTING: Pantau perubahan route. 
-// Jadi setiap pindah halaman, navbar akan ngecek ulang status localStorage.
 watch(() => route.path, () => {
   checkLoginStatus()
 })
@@ -97,7 +91,6 @@ const handleLogout = () => {
 </script>
 
 <style>
-/* Font & Reset tetap sama */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -139,7 +132,6 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 
 .nav-item:hover, .router-link-active { color: #3b82f6; }
 
-/* Style Khusus Link Dashboard */
 .dash-link {
   color: #3b82f6;
   background: #eff6ff;

@@ -8,6 +8,7 @@ import { SupabaseModule } from './supabase/supabase.module';
 import { TutorProfileModule } from './tutor-profile/tutor-profile.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SavedTutorModule } from './saved-tutor/saved-tutor.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AppService } from './app.service';
     AuthModule,
     TutorRegistrationModule,
     TutorProfileModule,
+    SavedTutorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
