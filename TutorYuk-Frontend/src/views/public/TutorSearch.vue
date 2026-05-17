@@ -5,8 +5,12 @@
       <p>Cari berdasarkan mata kuliah, rating, atau keahlian spesifik.</p>
       
       <div class="filter-section">
-        <!-- Search Bar Utama -->
+        <!-- Search Bar dengan Icon SVG -->
         <div class="search-bar">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
           <input 
             type="text" 
             v-model="searchQuery" 
@@ -14,7 +18,6 @@
           />
         </div>
 
-        <!-- Filter Dropdowns -->
         <div class="filter-controls">
           <select v-model="selectedCategory" class="filter-select">
             <option value="">Semua Mata Kuliah</option>
@@ -23,9 +26,9 @@
 
           <select v-model="minRating" class="filter-select">
             <option value="0">Semua Rating</option>
-            <option value="4.5">⭐ 4.5 ke atas</option>
-            <option value="4.8">⭐ 4.8 ke atas</option>
-            <option value="5">⭐ 5.0 (Sempurna)</option>
+            <option value="4.5">Bintang 4.5 ke atas</option>
+            <option value="4.8">Bintang 4.8 ke atas</option>
+            <option value="5">Bintang 5.0 (Sempurna)</option>
           </select>
         </div>
       </div>
@@ -33,7 +36,6 @@
 
     <!-- Tutor Grid -->
     <div class="tutor-grid" v-if="!isLoading && !errorMessage && filteredTutors.length > 0">
-      <!-- Navigasi ke Detail menggunakan ID -->
       <router-link 
         v-for="tutor in filteredTutors" 
         :key="tutor.id" 
@@ -42,8 +44,31 @@
       >
         <div class="tutor-card">
           <div class="tutor-image">
+            <!-- Tombol Bookmark dengan SVG Heart -->
+            <button 
+              class="bookmark-btn" 
+              @click.prevent="toggleSaveTutor(tutor.id)"
+              title="Simpan Tutor"
+            >
+              <!-- Heart Filled (Merah) -->
+              <svg v-if="savedTutorIds.includes(tutor.id)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <!-- Heart Outline (Abu-abu) -->
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+
             <span class="initials">{{ getInitials(tutor.name) }}</span>
-            <div class="rating-badge">⭐ {{ tutor.rating }}</div>
+            
+            <!-- Badge Rating dengan SVG Star -->
+            <div class="rating-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              {{ tutor.rating }}
+            </div>
           </div>
           
           <div class="tutor-info">
@@ -55,13 +80,11 @@
             </div>
             
             <div class="card-footer">
-              <!-- Range Harga -->
               <div class="price-info">
                 <span class="price-label">Estimasi Biaya</span>
                 <span class="price-value">{{ tutor.priceRange }}</span>
               </div>
               
-              <!-- Tombol WA (stopPropagation agar tidak trigger router-link) -->
               <a 
                 :href="'https://wa.me/' + tutor.phone_number" 
                 target="_blank" 
@@ -78,16 +101,25 @@
 
     <!-- Loading State -->
     <div v-if="isLoading" class="empty-state">
-      <p>⏳ Memuat data tutor...</p>
+      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+      </svg>
+      <p>Memuat data tutor...</p>
     </div>
 
     <!-- Error State -->
     <div v-else-if="errorMessage" class="empty-state error-state">
-      <p>⚠️ {{ errorMessage }}</p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <p>{{ errorMessage }}</p>
     </div>
 
     <!-- Empty State -->
     <div v-else-if="!isLoading && filteredTutors.length === 0" class="empty-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
       <p>Tutor tidak ditemukan. Coba ganti filter atau kata kunci pencarianmu.</p>
     </div>
   </div>
@@ -103,35 +135,41 @@ const minRating = ref('0')
 const isLoading = ref(false)
 const errorMessage = ref('')
 
-// Daftar kategori untuk filter dropdown (dinamis dari data tutor)
+const savedTutorIds = ref([])
+
 const categories = computed(() => {
   const cats = tutors.value.map(t => t.category).filter(Boolean)
   return [...new Set(cats)].sort()
 })
 
-// State data tutor dari API
 const tutors = ref([])
 
-// Fetch data dari backend saat komponen di-mount
 onMounted(async () => {
   isLoading.value = true
   errorMessage.value = ''
   try {
     const response = await api.get('/tutor-profile/public')
-    // Mapping data dari DB ke shape yang dipakai frontend
     tutors.value = response.data.map(profile => ({
       id: profile.id,
       name: profile.user?.name || 'Nama tidak tersedia',
       phone_number: profile.phone_number || '',
-      // Sementara: education dipakai sebagai category sampai tabel categories terintegrasi
       category: profile.education || 'Umum',
       bio: profile.bio || '',
       experience: profile.experience || '',
       teaching_preference: profile.teaching_preference || '',
-      // Default values karena belum ada di DB
       rating: 5.0,
       priceRange: 'Diskusikan via WA',
     }))
+
+    try {
+      const savedResponse = await api.get('/saved-tutors')
+      savedTutorIds.value = savedResponse.data.map(item => Number(item.tutor_profile_id))
+    } catch (saveError) {
+      if (saveError.response?.status !== 401) {
+        console.error('Gagal mengambil data bookmark:', saveError)
+      }
+    }
+
   } catch (error) {
     console.error('Gagal mengambil data tutor:', error)
     errorMessage.value = 'Gagal memuat data tutor. Pastikan server backend berjalan.'
@@ -140,7 +178,27 @@ onMounted(async () => {
   }
 })
 
-// Logika Filter Gabungan: Search + Category + Rating
+const toggleSaveTutor = async (tutorProfileId) => {
+  try {
+    const isSaved = savedTutorIds.value.includes(tutorProfileId)
+    
+    if (isSaved) {
+      await api.delete(`/saved-tutors/${tutorProfileId}`)
+      savedTutorIds.value = savedTutorIds.value.filter(id => id !== tutorProfileId)
+    } else {
+      await api.post(`/saved-tutors/${tutorProfileId}`)
+      savedTutorIds.value.push(tutorProfileId)
+    }
+  } catch (error) {
+    console.error('Gagal memproses bookmark tutor:', error)
+    if (error.response && error.response.status === 401) {
+      alert('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
+    } else {
+      alert('Terjadi kesalahan saat memproses bookmark.')
+    }
+  }
+}
+
 const filteredTutors = computed(() => {
   return tutors.value.filter(tutor => {
     const q = searchQuery.value.toLowerCase()
@@ -179,6 +237,11 @@ const getInitials = (name) => {
   color: #0f172a;
 }
 
+.search-header p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
 .filter-section {
   margin-top: 30px;
   display: flex;
@@ -187,23 +250,34 @@ const getInitials = (name) => {
   align-items: center;
 }
 
+/* PEMBARUAN: Search Bar dengan Ikon */
 .search-bar {
   width: 100%;
   max-width: 600px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
 }
 
 .search-bar input {
   width: 100%;
-  padding: 15px 25px;
+  padding: 16px 20px 16px 48px; /* Padding kiri ditambah untuk space ikon */
   border-radius: 12px;
   border: 2px solid #e2e8f0;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .search-bar input:focus {
   border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 .filter-controls {
@@ -212,7 +286,7 @@ const getInitials = (name) => {
 }
 
 .filter-select {
-  padding: 10px 15px;
+  padding: 12px 18px;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
   background: white;
@@ -220,6 +294,11 @@ const getInitials = (name) => {
   cursor: pointer;
   font-weight: 600;
   color: #475569;
+  outline: none;
+}
+
+.filter-select:focus {
+  border-color: #3b82f6;
 }
 
 .tutor-grid {
@@ -257,16 +336,50 @@ const getInitials = (name) => {
   position: relative;
 }
 
+.bookmark-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
+}
+
+.bookmark-btn:hover {
+  transform: scale(1.15);
+}
+
+.bookmark-btn:active {
+  transform: scale(0.9);
+}
+
+/* PEMBARUAN: Badge Rating */
 .rating-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   background: white;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-icon {
+  margin-top: -2px;
 }
 
 .initials {
@@ -281,7 +394,7 @@ const getInitials = (name) => {
 
 .category-badge {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 6px 14px;
   background: #dbeafe;
   color: #1e40af;
   border-radius: 50px;
@@ -301,7 +414,7 @@ const getInitials = (name) => {
   font-size: 0.9rem;
   color: #64748b;
   margin-bottom: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -359,16 +472,49 @@ const getInitials = (name) => {
   background: #1eb954;
 }
 
+/* PEMBARUAN: Empty & Loading States */
 .empty-state {
   text-align: center;
-  padding: 100px 20px;
-  color: #94a3b8;
+  padding: 80px 20px;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .error-state {
   color: #ef4444;
   background: #fef2f2;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 40px;
+  border: 1px dashed #fca5a5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Animasi Putar untuk Loading */
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+.spin-icon {
+  animation: spin 2s linear infinite;
+}
+
+/* Responsivitas Layar HP */
+@media (max-width: 640px) {
+  .filter-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filter-select {
+    width: 100%;
+  }
 }
 </style>

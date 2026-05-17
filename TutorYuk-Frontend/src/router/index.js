@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// Import views
-// Kita gunakan lazy loading supaya aplikasi lebih ringan
 const routes = [
   {
     path: '/',
@@ -35,28 +33,32 @@ const routes = [
   }
   ,
   {
-  path: '/admin/dashboard',
-  name: 'AdminDashboard',
-  component: () => import('../views/admin/AdminDashboard.vue')
+    path: '/admin/dashboard',
+    name: 'AdminDashboard',
+    component: () => import('../views/admin/AdminDashboard.vue')
   }
   ,
   {
-  path: '/tutor/dashboard',
-  name: 'TutorDashboard',
-  component: () => import('../views/tutor/TutorDashboard.vue')
+    path: '/tutor/dashboard',
+    name: 'TutorDashboard',
+    component: () => import('../views/tutor/TutorDashboard.vue')
   }
   ,
   {
-  path: '/tutee/dashboard',
-  name: 'TuteeDashboard',
-  component: () => import('../views/tutee/TuteeDashboard.vue')
-  }
+    path: '/tutee/dashboard',
+    name: 'TuteeDashboard',
+    component: () => import('../views/tutee/TuteeDashboard.vue')
+  },
+  {
+    path: '/saved-tutors',
+    name: 'SavedTutors',
+    component: () => import('../views/public/SavedTutors.vue')
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  // Agar setiap pindah halaman otomatis scroll ke paling atas
   scrollBehavior() {
     return { top: 0 }
   }
