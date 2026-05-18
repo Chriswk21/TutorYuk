@@ -1,7 +1,7 @@
 <template>
   <!-- Loading State -->
   <div v-if="isLoading" class="detail-container empty-state">
-    <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6ba846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
     </svg>
     <p>Memuat profil tutor...</p>
@@ -169,7 +169,7 @@ const getInitials = (name) => {
   font-size: 0.95rem; 
   transition: color 0.2s;
 }
-.btn-back:hover { color: #3b82f6; }
+.btn-back:hover { color: #6ba846; }
 
 .detail-grid { display: grid; grid-template-columns: 350px 1fr; gap: 40px; align-items: start; }
 
@@ -189,8 +189,8 @@ const getInitials = (name) => {
 .detail-avatar { 
   width: 120px; 
   height: 120px; 
-  background: #eff6ff; 
-  color: #3b82f6; 
+  background: #f1f8ed; 
+  color: #6ba846; 
   border-radius: 50%; 
   display: flex; 
   align-items: center; 
@@ -234,7 +234,7 @@ h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; }
 .info-content { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;}
 .info-section { margin-bottom: 40px; }
 .info-section:last-child { margin-bottom: 0; }
-.info-section h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; color: #0f172a; border-left: 4px solid #3b82f6; padding-left: 15px; }
+.info-section h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; color: #0f172a; border-left: 4px solid #6ba846; padding-left: 15px; }
 
 .bio-text { color: #475569; line-height: 1.8; font-size: 1.05rem; }
 
@@ -244,7 +244,7 @@ h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-chip { 
   background: white; 
-  color: #3b82f6; 
+  color: #6ba846; 
   padding: 8px 16px; 
   border-radius: 8px; 
   font-size: 0.9rem; 
@@ -252,7 +252,7 @@ h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 12px; }
   border: 1px solid #bfdbfe;
   transition: all 0.2s;
 }
-.skill-chip:hover { background: #eff6ff; transform: translateY(-2px); }
+.skill-chip:hover { background: #f1f8ed; transform: translateY(-2px); }
 
 /* REVIEW CARD */
 .review-card {

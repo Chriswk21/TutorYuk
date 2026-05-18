@@ -79,8 +79,8 @@ const submitRegistration = async () => {
 .form-group { margin-bottom: 20px; text-align: left; }
 label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #1e293b; }
 input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; outline: none; font-family: inherit; }
-input:focus, select:focus, textarea:focus { border-color: #3b82f6; }
-.btn-submit { width: 100%; background: #3b82f6; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+input:focus, select:focus, textarea:focus { border-color: #6ba846; }
+.btn-submit { width: 100%; background: #6ba846; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
 .btn-submit:hover { background: #2563eb; }
 
 @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }

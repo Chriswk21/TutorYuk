@@ -3,8 +3,8 @@
     <nav class="navbar">
       <div class="nav-container">
         <router-link to="/" class="brand-container">
-          <img src="./assets/logo.png" alt="TutorDek Logo" class="nav-logo">
-          <span class="brand-name">Tutor<span>Dek</span></span>
+          <img src="./assets/logo.png" alt="TutorYuk Logo" class="nav-logo">
+          <span class="brand-name">Tutor<span class="brand-yuk">Yuk</span></span>
         </router-link>
 
         <div class="nav-links">
@@ -118,8 +118,23 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 
 .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo { height: 60px; width: auto; object-fit: contain; }
-.brand-name { font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
-.brand-name span { color: #3b82f6; }
+.brand-name { font-size: 2rem; font-weight: 800; color: #1a4f7e; letter-spacing: -0.5px; }
+.brand-yuk { 
+  color: #6ba846; 
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.brand-yuk::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  width: calc(100% + 5px);
+  height: 4px;
+  background: linear-gradient(to right, #1a4f7e 0%, #6ba846 100%);
+  border-radius: 2px;
+}
 
 .nav-links { display: flex; align-items: center; gap: 25px; }
 .nav-item {
@@ -130,17 +145,17 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
   transition: color 0.3s;
 }
 
-.nav-item:hover, .router-link-active { color: #3b82f6; }
+.nav-item:hover, .router-link-active { color: #6ba846; }
 
 .dash-link {
-  color: #3b82f6;
-  background: #eff6ff;
+  color: #6ba846;
+  background: #f1f8ed;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
 .btn-login {
-  background: #3b82f6;
+  background: #6ba846;
   color: white;
   padding: 10px 24px;
   border-radius: 10px;

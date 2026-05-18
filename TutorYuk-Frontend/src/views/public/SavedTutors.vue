@@ -9,7 +9,7 @@
 
     <!-- Loading State -->
     <div v-if="isLoading" class="empty-state">
-      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6ba846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
       </svg>
       <p>Memuat daftar tutor favoritmu...</p>
@@ -203,7 +203,7 @@ onMounted(() => {
 
 .tutor-image {
   height: 120px;
-  background: #eff6ff;
+  background: #f1f8ed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,7 +213,7 @@ onMounted(() => {
 .initials {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #3b82f6;
+  color: #6ba846;
 }
 
 .bookmark-btn {
@@ -363,7 +363,7 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: #3b82f6;
+  background: #6ba846;
   color: white;
   padding: 12px 25px;
   border-radius: 10px;

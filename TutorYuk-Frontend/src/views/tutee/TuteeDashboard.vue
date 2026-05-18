@@ -51,13 +51,13 @@ const history = ref([
 .tutee-header { margin-bottom: 30px; }
 .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
 .stat-card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.stat-card .val { display: block; font-size: 2rem; font-weight: 800; color: #3b82f6; }
+.stat-card .val { display: block; font-size: 2rem; font-weight: 800; color: #6ba846; }
 
 .history-list { background: white; border-radius: 15px; padding: 10px; margin-top: 15px; }
 .history-item { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #f1f5f9; }
-.avatar { width: 45px; height: 45px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #3b82f6; margin-right: 15px; }
+.avatar { width: 45px; height: 45px; background: #f1f8ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #6ba846; margin-right: 15px; }
 .info { flex-grow: 1; }
 .info h4 { margin: 0; font-size: 1rem; }
 .info span { font-size: 0.8rem; color: #64748b; }
-.btn-revisit { text-decoration: none; font-size: 0.85rem; font-weight: 700; color: #3b82f6; border: 1px solid #3b82f6; padding: 5px 15px; border-radius: 8px; }
+.btn-revisit { text-decoration: none; font-size: 0.85rem; font-weight: 700; color: #6ba846; border: 1px solid #6ba846; padding: 5px 15px; border-radius: 8px; }
 </style>

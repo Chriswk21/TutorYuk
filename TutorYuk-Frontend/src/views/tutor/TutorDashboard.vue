@@ -141,13 +141,13 @@ const getInitials = (name) => {
 
 .tutor-sidebar { background: white; border-right: 1px solid #e2e8f0; padding: 40px 20px; display: flex; flex-direction: column; }
 .tutor-profile-img { text-align: center; margin-bottom: 40px; }
-.avatar { width: 80px; height: 80px; background: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; margin: 0 auto 15px; }
+.avatar { width: 80px; height: 80px; background: #6ba846; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; margin: 0 auto 15px; }
 .tutor-profile-img h3 { font-size: 1.1rem; color: #0f172a; margin-bottom: 5px; }
 .tutor-profile-img p { font-size: 0.85rem; color: #64748b; }
 
 .tutor-nav { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
 .tutor-nav button { padding: 12px; border: none; background: transparent; text-align: left; border-radius: 10px; cursor: pointer; font-weight: 600; color: #64748b; }
-.tutor-nav button.active { background: #eff6ff; color: #3b82f6; }
+.tutor-nav button.active { background: #f1f8ed; color: #6ba846; }
 
 .sidebar-footer { border-top: 1px solid #f1f5f9; padding-top: 20px; }
 .btn-logout { width: 100%; padding: 10px; background: #fef2f2; color: #ef4444; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
@@ -164,7 +164,7 @@ label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;
 input, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; font-family: inherit; }
 small { color: #94a3b8; font-size: 0.75rem; margin-top: 5px; display: block; }
 
-.btn-save { background: #3b82f6; color: white; padding: 12px 25px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+.btn-save { background: #6ba846; color: white; padding: 12px 25px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .stat-box { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
