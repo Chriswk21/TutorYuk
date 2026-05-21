@@ -1,6 +1,6 @@
-# 🎓 TutorDek: Platform On-Demand Tutoring
+# 🎓 TutorYuk: Platform On-Demand Tutoring
 
-**TutorDek** adalah platform inovatif yang dirancang untuk menghubungkan mahasiswa dengan tutor secara efisien. Sistem ini mengintegrasikan manajemen profil, alur pendaftaran tutor
+**TutorYuk** adalah platform inovatif yang dirancang untuk menghubungkan mahasiswa dengan tutor secara efisien. Sistem ini mengintegrasikan manajemen profil, alur pendaftaran tutor
 
 ---
 
@@ -56,12 +56,12 @@ Bagian Frontend dirancang untuk memberikan pengalaman pengguna yang responsif:
 - Supabase account & Database URL
 
 ### Setup Backend
-1. Masuk ke direktori backend: `cd tutordek-backend`
+1. Masuk ke direktori backend: `cd tutoryuk-backend`
 2. Install dependensi: `npm install`
 3. Jalankan server: `npm run start:dev`
 
 ### Setup Frontend
-1. Masuk ke direktori frontend: `cd tutordek-frontend`
+1. Masuk ke direktori frontend: `cd tutoryuk-Frontend`
 2. Install dependensi: `npm install`
 3. Jalankan aplikasi: `npm run dev`
 

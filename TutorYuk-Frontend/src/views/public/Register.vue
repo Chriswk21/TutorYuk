@@ -2,7 +2,7 @@
   <div class="register-container">
     <div class="register-card">
       <h2>Buat Akun</h2>
-      <p>Pilih peranmu di TutorDek</p>
+      <p>Pilih peranmu di TutorYuk</p>
 
       <form @submit.prevent="handleRegister">
         <div class="form-group">
@@ -90,8 +90,8 @@ input[type="text"], input[type="email"], input[type="password"] {
 .role-item {
   border: 1px solid #e2e8f0; padding: 10px; border-radius: 12px; cursor: pointer; text-align: center; font-size: 0.85rem;
 }
-.role-item.active { border-color: #3b82f6; background: #eff6ff; color: #3b82f6; }
+.role-item.active { border-color: #6ba846; background: #f1f8ed; color: #6ba846; }
 .role-item input { display: none; }
-.btn-reg { width: 100%; background: #3b82f6; color: white; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.btn-reg { width: 100%; background: #6ba846; color: white; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
 .reg-footer { margin-top: 20px; font-size: 0.9rem; }
 </style>

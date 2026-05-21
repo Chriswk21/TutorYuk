@@ -1,7 +1,7 @@
 <template>
   <div class="admin-container">
     <aside class="admin-sidebar">
-      <div class="admin-brand">TutorDek <span>Admin</span></div>
+      <div class="admin-brand">TutorYuk <span>Admin</span></div>
       <nav class="admin-nav">
         <button :class="{ active: activeTab === 'pending' }" @click="activeTab = 'pending'">
           Pendaftar Baru
@@ -98,7 +98,7 @@ const rejectTutor = async (id) => {
 
 .admin-sidebar { background: #0f172a; color: white; padding: 30px 20px; }
 .admin-brand { font-size: 1.5rem; font-weight: 800; margin-bottom: 40px; }
-.admin-brand span { color: #3b82f6; }
+.admin-brand span { color: #6ba846; }
 
 .admin-nav { display: flex; flex-direction: column; gap: 10px; }
 .admin-nav button { 

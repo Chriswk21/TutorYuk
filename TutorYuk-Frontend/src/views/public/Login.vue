@@ -3,7 +3,7 @@
     <div class="login-card">
       <div class="login-header">
         <h2>Selamat Datang</h2>
-        <p>Masuk ke akun TutorDek kamu</p>
+        <p>Masuk ke akun TutorYuk kamu</p>
       </div>
 
       <form @submit.prevent="handleLogin">
@@ -100,10 +100,10 @@ input {
   border: 1px solid #e2e8f0;
   outline: none;
 }
-input:focus { border-color: #3b82f6; }
+input:focus { border-color: #6ba846; }
 .btn-login-submit {
   width: 100%;
-  background: #3b82f6;
+  background: #6ba846;
   color: white;
   padding: 14px;
   border: none;
@@ -112,5 +112,5 @@ input:focus { border-color: #3b82f6; }
   cursor: pointer;
 }
 .login-footer { margin-top: 25px; text-align: center; font-size: 0.9rem; }
-.login-footer a { color: #3b82f6; text-decoration: none; font-weight: 700; }
+.login-footer a { color: #6ba846; text-decoration: none; font-weight: 700; }
 </style>

@@ -4,8 +4,8 @@
       <!-- Kolom 1: Brand -->
       <div class="footer-brand">
         <div class="brand-logo">
-          <img src="../assets/logo.png" alt="Logo" class="f-logo">
-          <span class="f-name">Tutor<span>Dek</span></span>
+          <img src="../assets/logo.png" alt="TutorYuk Logo" class="f-logo">
+          <span class="brand-name" style="color: white;">Tutor<span class="brand-yuk">Yuk</span></span>
         </div>
         <p>Platform marketplace tutor sebaya untuk membantu mahasiswa meraih prestasi akademik terbaik.</p>
       </div>
@@ -24,13 +24,13 @@
       <div class="footer-contact">
         <h4>Hubungi Kami</h4>
         <p>📍 BINUS University, Jakarta</p>
-        <p>📧 support@tutordek.com</p>
+        <p>📧 support@tutoryuk.com</p>
         <p>📱 +62 812-3456-7890</p>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 TutorDek. All rights reserved.</p>
+      <p>&copy; 2026 TutorYuk. All rights reserved.</p>
     </div>
   </footer>
 </template>
@@ -69,8 +69,6 @@
   font-weight: 800;
 }
 
-.f-name span { color: #3b82f6; }
-
 .footer-brand p {
   color: #94a3b8;
   max-width: 300px;
@@ -92,7 +90,7 @@
   transition: color 0.3s;
 }
 
-.footer-links a:hover { color: #3b82f6; }
+.footer-links a:hover { color: #6ba846; }
 
 .footer-contact p {
   color: #94a3b8;
