@@ -67,7 +67,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              {{ tutor.rating }}
+              {{ tutor.rating !== null ? tutor.rating : '-' }}
             </div>
           </div>
           
@@ -101,7 +101,7 @@
 
     <!-- Loading State -->
     <div v-if="isLoading" class="empty-state">
-      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
       </svg>
       <p>Memuat data tutor...</p>
@@ -150,14 +150,15 @@ onMounted(async () => {
   try {
     const response = await api.get('/tutor-profile/public')
     tutors.value = response.data.map(profile => ({
-      id: profile.id,
+      id: Number(profile.id),
       name: profile.user?.name || 'Nama tidak tersedia',
       phone_number: profile.phone_number || '',
       category: profile.education || 'Umum',
       bio: profile.bio || '',
       experience: profile.experience || '',
       teaching_preference: profile.teaching_preference || '',
-      rating: 5.0,
+      rating: profile.rating ?? null,
+      total_schedule: profile.total_schedule ?? 0,
       priceRange: 'Diskusikan via WA',
     }))
 
@@ -192,9 +193,9 @@ const toggleSaveTutor = async (tutorProfileId) => {
   } catch (error) {
     console.error('Gagal memproses bookmark tutor:', error)
     if (error.response && error.response.status === 401) {
-      alert('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
+      window.$toast('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
     } else {
-      alert('Terjadi kesalahan saat memproses bookmark.')
+      window.$toast('Terjadi kesalahan saat memproses bookmark.')
     }
   }
 }
@@ -208,7 +209,7 @@ const filteredTutors = computed(() => {
                           tutor.bio.toLowerCase().includes(q)
     
     const matchesCategory = selectedCategory.value === '' || tutor.category === selectedCategory.value
-    const matchesRating = tutor.rating >= parseFloat(minRating.value)
+    const matchesRating = parseFloat(minRating.value) === 0 || (tutor.rating !== null && tutor.rating >= parseFloat(minRating.value))
 
     return matchesSearch && matchesCategory && matchesRating
   })
@@ -276,7 +277,7 @@ const getInitials = (name) => {
 }
 
 .search-bar input:focus {
-  border-color: #3b82f6;
+  border-color: #1e40af;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
@@ -298,7 +299,7 @@ const getInitials = (name) => {
 }
 
 .filter-select:focus {
-  border-color: #3b82f6;
+  border-color: #1e40af;
 }
 
 .tutor-grid {
@@ -385,7 +386,7 @@ const getInitials = (name) => {
 .initials {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #3b82f6;
+  color: #1e40af;
 }
 
 .tutor-info {
@@ -424,7 +425,7 @@ const getInitials = (name) => {
 .experience {
   font-size: 0.85rem;
   color: #475569;
-  background: #f8fafc;
+  background: #eff6ff;
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 20px;

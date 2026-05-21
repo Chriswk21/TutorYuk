@@ -59,16 +59,17 @@ const handleLogin = async () => {
     localStorage.setItem('userLoggedIn', 'true')
     localStorage.setItem('userRole', role)
     localStorage.setItem('userName', user.name)
+    localStorage.setItem('userId', user.id)
     localStorage.setItem('token', response.data.access_token)
 
-    alert(`Berhasil masuk sebagai ${role.toUpperCase()}`)
+    window.$toast(`Berhasil masuk sebagai ${role.toUpperCase()}`)
 
     if (role === 'admin') router.push('/admin/dashboard')
     else if (role === 'tutor') router.push('/tutor/dashboard')
     else router.push('/tutee/dashboard')
   } catch (error) {
     const message = error?.response?.data?.message || 'Login gagal. Cek email dan password.'
-    alert(message)
+    window.$toast(message)
   }
 }
 </script>
@@ -79,7 +80,8 @@ const handleLogin = async () => {
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  background-color: #f8fafc;
+  background-color: #dbeafe;
+  padding: 20px;
 }
 .login-card {
   background: white;
@@ -99,18 +101,25 @@ input {
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   outline: none;
+  box-sizing: border-box;
+  font-size: 1rem;
 }
-input:focus { border-color: #3b82f6; }
+input:focus { border-color: #1e40af; }
 .btn-login-submit {
   width: 100%;
-  background: #3b82f6;
+  background: #1e40af;
   color: white;
   padding: 14px;
   border: none;
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
+  font-size: 1rem;
 }
 .login-footer { margin-top: 25px; text-align: center; font-size: 0.9rem; }
-.login-footer a { color: #3b82f6; text-decoration: none; font-weight: 700; }
+.login-footer a { color: #1e40af; text-decoration: none; font-weight: 700; }
+
+@media (max-width: 480px) {
+  .login-card { padding: 25px; }
+}
 </style>

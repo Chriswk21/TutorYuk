@@ -143,7 +143,7 @@
 }
 
 .btn-primary {
-  background: #3b82f6;
+  background: #1e40af;
   color: white;
   padding: 16px 32px;
   border-radius: 12px;
@@ -155,7 +155,7 @@
 }
 
 .btn-primary:hover {
-  background: #2563eb;
+  background: #1e3a8a;
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
 }
@@ -213,14 +213,14 @@
   width: 80px;
   height: 80px;
   background: #eff6ff; /* Latar biru super muda */
-  color: #3b82f6; /* Warna ikon biru primer */
+  color: #1e40af; /* Warna ikon biru primer */
   border-radius: 20px; /* Bentuk kotak melengkung (squircle) */
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .info-card:hover .info-icon {
   transform: scale(1.1) rotate(-5deg);
-  background: #3b82f6;
+  background: #1e40af;
   color: white; /* Ikon berubah putih saat di-hover */
 }
 

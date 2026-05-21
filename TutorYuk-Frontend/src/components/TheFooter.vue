@@ -37,7 +37,7 @@
 
 <style scoped>
 .footer {
-  background: #0f172a;
+  background: #1e3a8a;
   color: #f8fafc;
   padding: 60px 0 20px 0;
   margin-top: 50px;
@@ -69,10 +69,10 @@
   font-weight: 800;
 }
 
-.f-name span { color: #3b82f6; }
+.f-name span { color: #93c5fd; }
 
 .footer-brand p {
-  color: #94a3b8;
+  color: #bfdbfe;
   max-width: 300px;
   line-height: 1.6;
 }
@@ -87,24 +87,24 @@
 .footer-links li { margin-bottom: 10px; }
 
 .footer-links a {
-  color: #94a3b8;
+  color: #bfdbfe;
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.footer-links a:hover { color: #3b82f6; }
+.footer-links a:hover { color: #93c5fd; }
 
 .footer-contact p {
-  color: #94a3b8;
+  color: #bfdbfe;
   margin-bottom: 10px;
 }
 
 .footer-bottom {
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid #1e40af;
   margin-top: 50px;
   padding-top: 20px;
   text-align: center;
-  color: #64748b;
+  color: #93c5fd;
   font-size: 0.85rem;
 }
 

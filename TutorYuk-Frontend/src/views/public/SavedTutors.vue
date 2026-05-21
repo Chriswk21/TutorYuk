@@ -9,7 +9,7 @@
 
     <!-- Loading State -->
     <div v-if="isLoading" class="empty-state">
-      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
       </svg>
       <p>Memuat daftar tutor favoritmu...</p>
@@ -60,7 +60,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              {{ tutor.rating }}
+              {{ tutor.rating !== null ? tutor.rating : '-' }}
             </div>
           </div>
           
@@ -108,13 +108,14 @@ const fetchSavedTutors = async () => {
     savedTutors.value = response.data.map(item => {
       const profile = item.tutorProfile
       return {
-        id: profile.id,
+        id: Number(profile.id),
         name: profile.user?.name || 'Nama tidak tersedia',
         category: profile.education || 'Umum',
         bio: profile.bio || '',
         experience: profile.experience || '',
         phone_number: profile.phone_number || '',
-        rating: 5.0,
+        rating: profile.rating ?? null,
+        total_schedule: profile.total_schedule ?? 0,
         priceRange: 'Diskusikan via WA',
       }
     })
@@ -136,7 +137,7 @@ const removeSavedTutor = async (tutorProfileId) => {
     savedTutors.value = savedTutors.value.filter(tutor => tutor.id !== tutorProfileId)
   } catch (error) {
     console.error('Gagal menghapus tutor:', error)
-    alert('Terjadi kesalahan saat menghapus tutor.')
+    window.$toast('Terjadi kesalahan saat menghapus tutor.')
   }
 }
 
@@ -213,7 +214,7 @@ onMounted(() => {
 .initials {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #3b82f6;
+  color: #1e40af;
 }
 
 .bookmark-btn {
@@ -340,7 +341,7 @@ onMounted(() => {
 .empty-state {
   text-align: center;
   padding: 80px 20px;
-  background: #f8fafc;
+  background: #eff6ff;
   border-radius: 20px;
   border: 2px dashed #e2e8f0;
   display: flex;
@@ -363,7 +364,7 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: #3b82f6;
+  background: #1e40af;
   color: white;
   padding: 12px 25px;
   border-radius: 10px;
@@ -374,7 +375,7 @@ onMounted(() => {
 }
 
 .btn-primary:hover {
-  background: #2563eb;
+  background: #1e3a8a;
 }
 
 .error-state {

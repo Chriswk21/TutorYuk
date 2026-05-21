@@ -81,8 +81,8 @@ watch(() => route.path, () => {
   checkLoginStatus()
 })
 
-const handleLogout = () => {
-  if (confirm('Yakin ingin keluar?')) {
+const handleLogout = async () => {
+  if (await window.$confirm('Yakin ingin keluar?')) {
     localStorage.clear()
     checkLoginStatus()
     router.push('/login')
@@ -94,7 +94,7 @@ const handleLogout = () => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+body { font-family: 'Inter', sans-serif; background-color: #dbeafe; color: #1e293b; }
 
 .navbar {
   background: white;
@@ -119,7 +119,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo { height: 60px; width: auto; object-fit: contain; }
 .brand-name { font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
-.brand-name span { color: #3b82f6; }
+.brand-name span { color: #93c5fd; }
 
 .nav-links { display: flex; align-items: center; gap: 25px; }
 .nav-item {
@@ -130,17 +130,17 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
   transition: color 0.3s;
 }
 
-.nav-item:hover, .router-link-active { color: #3b82f6; }
+.nav-item:hover, .router-link-active { color: #1e40af; }
 
 .dash-link {
-  color: #3b82f6;
+  color: #1e40af;
   background: #eff6ff;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
 .btn-login {
-  background: #3b82f6;
+  background: #1e40af;
   color: white;
   padding: 10px 24px;
   border-radius: 10px;

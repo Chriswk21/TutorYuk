@@ -38,6 +38,13 @@ export class TutorProfile {
   @Column({ type: 'text', nullable: true })
   teaching_preference: string;
 
+  // Tambahan untuk fitur rating
+  @Column({ type: 'float', nullable: true })
+  rating: number;
+
+  @Column({ type: 'int', default: 0 })
+  total_schedule: number;
+
   @CreateDateColumn({ type: 'timestamp', default: () => 'now()' })
   created_at: Date;
 }
