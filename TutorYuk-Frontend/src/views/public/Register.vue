@@ -2,7 +2,7 @@
   <div class="register-container">
     <div class="register-card">
       <h2>Buat Akun</h2>
-      <p>Pilih peranmu di TutorDek</p>
+      <p>Pilih peranmu di TutorYuk</p>
 
       <form @submit.prevent="handleRegister">
         <div class="form-group">
@@ -79,7 +79,7 @@ const handleRegister = async () => {
 </script>
 
 <style scoped>
-.register-container { display: flex; justify-content: center; align-items: center; min-height: 85vh; background: #dbeafe; }
+.register-container { display: flex; justify-content: center; align-items: center; min-height: 85vh; background: #f1f5f9; }
 .register-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 450px; text-align: center; }
 .form-group { text-align: left; margin-bottom: 20px; }
 label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
@@ -90,8 +90,8 @@ input[type="text"], input[type="email"], input[type="password"] {
 .role-item {
   border: 1px solid #e2e8f0; padding: 10px; border-radius: 12px; cursor: pointer; text-align: center; font-size: 0.85rem;
 }
-.role-item.active { border-color: #1e40af; background: #eff6ff; color: #1e40af; }
+.role-item.active { border-color: #16a34a; background: #f0fdf4; color: #16a34a; }
 .role-item input { display: none; }
-.btn-reg { width: 100%; background: #1e40af; color: white; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.btn-reg { width: 100%; background: #16a34a; color: white; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
 .reg-footer { margin-top: 20px; font-size: 0.9rem; }
 </style>

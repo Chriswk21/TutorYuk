@@ -5,7 +5,7 @@
       <div class="footer-brand">
         <div class="brand-logo">
           <img src="../assets/logo.png" alt="Logo" class="f-logo">
-          <span class="f-name">Tutor<span>Dek</span></span>
+          <span class="f-name">Tutor<span>Yuk</span></span>
         </div>
         <p>Platform marketplace tutor sebaya untuk membantu mahasiswa meraih prestasi akademik terbaik.</p>
       </div>
@@ -24,13 +24,13 @@
       <div class="footer-contact">
         <h4>Hubungi Kami</h4>
         <p>📍 BINUS University, Jakarta</p>
-        <p>📧 support@tutordek.com</p>
+        <p>📧 support@tutoryuk.com</p>
         <p>📱 +62 812-3456-7890</p>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 TutorDek. All rights reserved.</p>
+      <p>&copy; 2026 TutorYuk. All rights reserved.</p>
     </div>
   </footer>
 </template>
@@ -69,10 +69,10 @@
   font-weight: 800;
 }
 
-.f-name span { color: #93c5fd; }
+.f-name span { color: #22c55e; }
 
 .footer-brand p {
-  color: #bfdbfe;
+  color: #cbd5e1;
   max-width: 300px;
   line-height: 1.6;
 }
@@ -87,24 +87,24 @@
 .footer-links li { margin-bottom: 10px; }
 
 .footer-links a {
-  color: #bfdbfe;
+  color: #cbd5e1;
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.footer-links a:hover { color: #93c5fd; }
+.footer-links a:hover { color: #22c55e; }
 
 .footer-contact p {
-  color: #bfdbfe;
+  color: #cbd5e1;
   margin-bottom: 10px;
 }
 
 .footer-bottom {
-  border-top: 1px solid #1e40af;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 50px;
   padding-top: 20px;
   text-align: center;
-  color: #93c5fd;
+  color: #cbd5e1;
   font-size: 0.85rem;
 }
 

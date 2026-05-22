@@ -3,7 +3,7 @@
     <div class="login-card">
       <div class="login-header">
         <h2>Selamat Datang</h2>
-        <p>Masuk ke akun TutorDek kamu</p>
+        <p>Masuk ke akun TutorYuk kamu</p>
       </div>
 
       <form @submit.prevent="handleLogin">
@@ -80,7 +80,7 @@ const handleLogin = async () => {
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  background-color: #dbeafe;
+  background-color: #f1f5f9;
   padding: 20px;
 }
 .login-card {
@@ -104,10 +104,10 @@ input {
   box-sizing: border-box;
   font-size: 1rem;
 }
-input:focus { border-color: #1e40af; }
+input:focus { border-color: #16a34a; }
 .btn-login-submit {
   width: 100%;
-  background: #1e40af;
+  background: #16a34a;
   color: white;
   padding: 14px;
   border: none;
@@ -117,7 +117,7 @@ input:focus { border-color: #1e40af; }
   font-size: 1rem;
 }
 .login-footer { margin-top: 25px; text-align: center; font-size: 0.9rem; }
-.login-footer a { color: #1e40af; text-decoration: none; font-weight: 700; }
+.login-footer a { color: #16a34a; text-decoration: none; font-weight: 700; }
 
 @media (max-width: 480px) {
   .login-card { padding: 25px; }

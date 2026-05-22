@@ -358,7 +358,7 @@ const getWALink = (phone) => {
 }
 .header-info { display: flex; align-items: center; gap: 12px; }
 .avatar {
-  width: 50px; height: 50px; background: #1e40af; color: white;
+  width: 50px; height: 50px; background: #16a34a; color: white;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; font-weight: 800;
 }
@@ -393,7 +393,7 @@ const getWALink = (phone) => {
   border-bottom: 3px solid transparent; white-space: nowrap;
   font-size: 0.85rem; min-height: 44px; display: flex; align-items: center; gap: 6px;
 }
-.tab-btn.active { color: #1e40af; border-bottom-color: #1e40af; }
+.tab-btn.active { color: #16a34a; border-bottom-color: #16a34a; }
 .tab-badge {
   background: #ef4444; color: white;
   font-size: 0.7rem; padding: 2px 7px; border-radius: 10px;
@@ -408,7 +408,7 @@ const getWALink = (phone) => {
 .empty-state p { color: #64748b; }
 .spinner {
   width: 40px; height: 40px; border: 4px solid #e2e8f0;
-  border-top-color: #1e40af; border-radius: 50%;
+  border-top-color: #16a34a; border-radius: 50%;
   animation: spin 1s linear infinite; margin-bottom: 15px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -424,13 +424,13 @@ const getWALink = (phone) => {
 }
 .tutee-info { display: flex; gap: 12px; align-items: center; }
 .small-avatar {
-  width: 42px; height: 42px; background: #eff6ff; color: #1e40af;
+  width: 42px; height: 42px; background: #f0fdf4; color: #16a34a;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 0.95rem;
 }
 .tutee-info h3 { margin: 0; font-size: 1rem; color: #0f172a; }
 .category {
-  display: inline-block; background: #dbeafe; color: #1e40af;
+  display: inline-block; background: #dcfce7; color: #16a34a;
   padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
 }
 
@@ -438,14 +438,14 @@ const getWALink = (phone) => {
   padding: 4px 10px; border-radius: 8px;
   font-size: 0.75rem; font-weight: 700; white-space: nowrap;
 }
-.status-pending { background: #eff6ff; color: #1e3a8a; }
-.status-accepted { background: #dbeafe; color: #1e3a8a; }
+.status-pending { background: #f0fdf4; color: #15803d; }
+.status-accepted { background: #dcfce7; color: #15803d; }
 .status-rejected { background: #fee2e2; color: #991b1b; }
-.status-completed { background: #dbeafe; color: #1e3a8a; }
+.status-completed { background: #dcfce7; color: #15803d; }
 .status-cancelled { background: #f1f5f9; color: #64748b; }
 
 .booking-info {
-  background: #eff6ff; padding: 12px; border-radius: 10px;
+  background: #f0fdf4; padding: 12px; border-radius: 10px;
   margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;
 }
 .info-row { display: flex; gap: 8px; font-size: 0.85rem; color: #475569; flex-wrap: wrap; }
@@ -459,8 +459,8 @@ const getWALink = (phone) => {
   text-align: center; font-size: 0.9rem; min-height: 44px;
   display: flex; align-items: center; justify-content: center;
 }
-.btn-primary { background: #1e40af; color: white; }
-.btn-success { background: #1e40af; color: white; }
+.btn-primary { background: #16a34a; color: white; }
+.btn-success { background: #16a34a; color: white; }
 .btn-danger { background: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
 .btn-wa { background: #25D366; color: white; }
 
@@ -479,9 +479,9 @@ const getWALink = (phone) => {
   border-radius: 10px; font-family: inherit; font-size: 0.95rem;
   box-sizing: border-box; outline: none; resize: vertical;
 }
-.form-group input:focus, .form-group textarea:focus { border-color: #1e40af; }
+.form-group input:focus, .form-group textarea:focus { border-color: #16a34a; }
 .btn-save {
-  background: #1e40af; color: white; padding: 12px 24px;
+  background: #16a34a; color: white; padding: 12px 24px;
   border: none; border-radius: 10px; font-weight: 700;
   cursor: pointer; font-size: 0.95rem;
 }
@@ -508,7 +508,7 @@ const getWALink = (phone) => {
 }
 .modal-body { padding: 20px; }
 .tutee-summary {
-  background: #eff6ff; padding: 12px; border-radius: 10px;
+  background: #f0fdf4; padding: 12px; border-radius: 10px;
   margin-bottom: 18px; display: flex; flex-direction: column; gap: 4px;
 }
 .tutee-summary strong { color: #0f172a; }
@@ -521,7 +521,7 @@ const getWALink = (phone) => {
   font-weight: 700; cursor: pointer; font-size: 0.95rem; min-height: 44px;
 }
 .btn-cancel { background: #f1f5f9; color: #475569; }
-.btn-submit { background: #1e40af; color: white; }
+.btn-submit { background: #16a34a; color: white; }
 .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
 @media (min-width: 768px) {

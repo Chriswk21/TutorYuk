@@ -23,7 +23,7 @@
         <div class="profile-card-top">
           <div class="detail-avatar">{{ getInitials(tutor.name) }}</div>
           <h2>{{ tutor.name }}</h2>
-          <span class="category-tag">{{ tutor.category }}</span>
+
 
           <div class="rating-large">
             <span class="star">★</span>
@@ -44,6 +44,15 @@
           >
             📋 Request Sesi Belajar
           </button>
+
+          <a 
+            v-if="tutor"
+            :href="'https://wa.me/' + tutor.phone_number" 
+            target="_blank" 
+            class="btn-wa-full"
+          >
+            📞 Chat WA
+          </a>
 
           <p v-if="!isLoggedIn" class="login-hint">
             <router-link to="/login">Login</router-link> dulu untuk request tutor
@@ -274,7 +283,7 @@ const formatDate = (dateStr) => {
   display: inline-block; text-decoration: none; color: #64748b;
   font-weight: 600; font-size: 0.95rem;
 }
-.btn-back:hover { color: #1e40af; }
+.btn-back:hover { color: #16a34a; }
 
 .detail-grid { display: flex; flex-direction: column; gap: 20px; }
 
@@ -286,13 +295,13 @@ const formatDate = (dateStr) => {
   margin-bottom: 15px;
 }
 .detail-avatar {
-  width: 80px; height: 80px; background: #eff6ff; color: #1e40af;
+  width: 80px; height: 80px; background: #f0fdf4; color: #16a34a;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 2rem; font-weight: 700; margin: 0 auto 12px;
 }
 .profile-card-top h2 { margin: 0 0 5px; color: #0f172a; font-size: 1.4rem; }
 .category-tag {
-  display: inline-block; background: #dbeafe; color: #1e40af;
+  display: inline-block; background: #dcfce7; color: #16a34a;
   padding: 4px 12px; border-radius: 8px; font-size: 0.8rem;
   font-weight: 700; margin-top: 8px;
 }
@@ -311,14 +320,24 @@ const formatDate = (dateStr) => {
 .info-text { color: #64748b; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.5; }
 
 .btn-request-full {
-  width: 100%; background: #1e40af; color: white;
+  width: 100%; background: #16a34a; color: white;
   padding: 14px; border-radius: 10px; border: none;
   font-weight: 700; font-size: 1rem; cursor: pointer;
   transition: background 0.2s; min-height: 48px;
+  margin-bottom: 10px;
 }
-.btn-request-full:hover { background: #1e3a8a; }
+.btn-request-full:hover { background: #15803d; }
+
+.btn-wa-full {
+  display: flex; justify-content: center; align-items: center; gap: 8px;
+  width: 100%; background: #16a34a; color: white;
+  padding: 14px; border-radius: 10px; border: none;
+  font-weight: 700; font-size: 1rem; cursor: pointer;
+  text-decoration: none; transition: background 0.2s; min-height: 48px;
+}
+.btn-wa-full:hover { background: #15803d; }
 .login-hint { text-align: center; font-size: 0.85rem; color: #64748b; margin-top: 10px; }
-.login-hint a { color: #1e40af; font-weight: 700; }
+.login-hint a { color: #16a34a; font-weight: 700; }
 
 .info-content { display: flex; flex-direction: column; gap: 15px; }
 .info-section {
@@ -327,12 +346,12 @@ const formatDate = (dateStr) => {
 }
 .info-section h3 { margin: 0 0 12px; color: #0f172a; font-size: 1.1rem; }
 .bio-text { color: #475569; line-height: 1.6; font-size: 0.95rem; }
-.exp-box { background: #eff6ff; padding: 15px; border-radius: 10px; color: #475569; }
+.exp-box { background: #f0fdf4; padding: 15px; border-radius: 10px; color: #475569; }
 
 .empty-reviews { text-align: center; color: #94a3b8; padding: 20px; }
 
 .review-card {
-  background: #eff6ff; padding: 15px; border-radius: 12px;
+  background: #f0fdf4; padding: 15px; border-radius: 12px;
   margin-bottom: 12px;
 }
 .review-stars { display: flex; gap: 2px; margin-bottom: 8px; }
@@ -389,7 +408,7 @@ const formatDate = (dateStr) => {
 }
 .form-group select:focus,
 .form-group input:focus,
-.form-group textarea:focus { border-color: #1e40af; }
+.form-group textarea:focus { border-color: #16a34a; }
 .form-group small { color: #64748b; font-size: 0.8rem; margin-top: 4px; display: block; }
 
 .modal-footer {
@@ -400,7 +419,7 @@ const formatDate = (dateStr) => {
   font-weight: 700; cursor: pointer; font-size: 0.95rem; min-height: 44px;
 }
 .btn-cancel { background: #f1f5f9; color: #475569; }
-.btn-submit { background: #1e40af; color: white; }
+.btn-submit { background: #16a34a; color: white; }
 .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 .error-msg { color: #ef4444; font-size: 0.85rem; margin-top: 10px; text-align: center; }
 
@@ -410,7 +429,7 @@ const formatDate = (dateStr) => {
 }
 .spinner {
   width: 40px; height: 40px; border: 4px solid #e2e8f0;
-  border-top-color: #1e40af; border-radius: 50%;
+  border-top-color: #16a34a; border-radius: 50%;
   animation: spin 1s linear infinite; margin-bottom: 15px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }

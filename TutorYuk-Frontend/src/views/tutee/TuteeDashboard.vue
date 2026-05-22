@@ -347,7 +347,7 @@ const handleLogout = () => {
   border-bottom: 3px solid transparent; white-space: nowrap;
   font-size: 0.9rem; min-height: 44px; display: flex; align-items: center; gap: 6px;
 }
-.tab-btn.active { color: #1e40af; border-bottom-color: #1e40af; }
+.tab-btn.active { color: #16a34a; border-bottom-color: #16a34a; }
 .tab-badge {
   background: #ef4444; color: white;
   font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;
@@ -362,7 +362,7 @@ const handleLogout = () => {
 .empty-state p { color: #64748b; margin-bottom: 15px; }
 .spinner {
   width: 40px; height: 40px; border: 4px solid #e2e8f0;
-  border-top-color: #1e40af; border-radius: 50%;
+  border-top-color: #16a34a; border-radius: 50%;
   animation: spin 1s linear infinite; margin-bottom: 15px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -378,13 +378,13 @@ const handleLogout = () => {
 }
 .tutor-info { display: flex; gap: 12px; align-items: center; }
 .avatar {
-  width: 45px; height: 45px; background: #eff6ff; color: #1e40af;
+  width: 45px; height: 45px; background: #f0fdf4; color: #16a34a;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 1rem;
 }
 .tutor-info h3 { margin: 0; font-size: 1rem; color: #0f172a; }
 .category {
-  display: inline-block; background: #dbeafe; color: #1e40af;
+  display: inline-block; background: #dcfce7; color: #16a34a;
   padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
 }
 
@@ -392,14 +392,14 @@ const handleLogout = () => {
   padding: 4px 10px; border-radius: 8px;
   font-size: 0.75rem; font-weight: 700; white-space: nowrap;
 }
-.status-pending { background: #eff6ff; color: #1e3a8a; }
-.status-accepted { background: #dbeafe; color: #1e3a8a; }
+.status-pending { background: #f0fdf4; color: #15803d; }
+.status-accepted { background: #dcfce7; color: #15803d; }
 .status-rejected { background: #fee2e2; color: #991b1b; }
-.status-completed { background: #dbeafe; color: #1e3a8a; }
+.status-completed { background: #dcfce7; color: #15803d; }
 .status-cancelled { background: #f1f5f9; color: #64748b; }
 
 .booking-info {
-  background: #eff6ff; padding: 12px; border-radius: 10px;
+  background: #f0fdf4; padding: 12px; border-radius: 10px;
   margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;
 }
 .info-row { display: flex; gap: 8px; font-size: 0.85rem; color: #475569; flex-wrap: wrap; }
@@ -413,10 +413,10 @@ const handleLogout = () => {
   text-align: center; font-size: 0.9rem; min-height: 44px;
   display: flex; align-items: center; justify-content: center;
 }
-.btn-primary { background: #1e40af; color: white; }
+.btn-primary { background: #16a34a; color: white; }
 .btn-wa { background: #25D366; color: white; }
 .btn-danger { background: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
-.rated-badge { background: #eff6ff; color: #1e40af; }
+.rated-badge { background: #f0fdf4; color: #16a34a; }
 
 .modal-overlay {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -459,14 +459,14 @@ const handleLogout = () => {
   border-radius: 10px; font-family: inherit; font-size: 0.95rem;
   box-sizing: border-box; outline: none; resize: vertical;
 }
-.form-group textarea:focus { border-color: #1e40af; }
+.form-group textarea:focus { border-color: #16a34a; }
 .modal-footer { display: flex; gap: 10px; margin-top: 20px; }
 .btn-cancel, .btn-submit {
   flex: 1; padding: 12px; border-radius: 10px; border: none;
   font-weight: 700; cursor: pointer; font-size: 0.95rem; min-height: 44px;
 }
 .btn-cancel { background: #f1f5f9; color: #475569; }
-.btn-submit { background: #1e40af; color: white; }
+.btn-submit { background: #16a34a; color: white; }
 .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
 
 @media (min-width: 768px) {

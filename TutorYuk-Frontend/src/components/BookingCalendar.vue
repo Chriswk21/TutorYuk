@@ -237,11 +237,11 @@ watch(() => props.bookings, () => {
 
 .today-row { display: flex; justify-content: flex-end; margin-bottom: 12px; }
 .btn-today {
-  background: #eff6ff; color: #1e40af; border: 1px solid #dbeafe;
+  background: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7;
   padding: 6px 14px; border-radius: 8px; font-weight: 600;
   cursor: pointer; font-size: 0.85rem;
 }
-.btn-today:hover { background: #dbeafe; }
+.btn-today:hover { background: #dcfce7; }
 
 /* DAY LABELS */
 .day-labels {
@@ -259,7 +259,7 @@ watch(() => props.bookings, () => {
   display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
 }
 .cal-day {
-  aspect-ratio: 1; background: #eff6ff;
+  aspect-ratio: 1; background: #f0fdf4;
   border-radius: 8px; padding: 4px;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
   cursor: pointer; position: relative;
@@ -268,13 +268,13 @@ watch(() => props.bookings, () => {
 .cal-day:hover { background: #e2e8f0; }
 .cal-day.other-month { opacity: 0.35; }
 .cal-day.is-today {
-  background: #eff6ff; border: 2px solid #1e40af;
+  background: #f0fdf4; border: 2px solid #16a34a;
 }
-.cal-day.is-today .day-number { color: #1e40af; font-weight: 800; }
-.cal-day.has-events { background: #eff6ff; }
-.cal-day.has-events.is-today { background: #eff6ff; }
+.cal-day.is-today .day-number { color: #16a34a; font-weight: 800; }
+.cal-day.has-events { background: #f0fdf4; }
+.cal-day.has-events.is-today { background: #f0fdf4; }
 .cal-day.selected {
-  background: #1e40af !important; color: white;
+  background: #16a34a !important; color: white;
 }
 .cal-day.selected .day-number { color: white; }
 .cal-day.selected .dot { box-shadow: 0 0 0 1px white; }
@@ -290,9 +290,9 @@ watch(() => props.bookings, () => {
 .dot {
   width: 6px; height: 6px; border-radius: 50%; display: inline-block;
 }
-.dot-pending { background: #93c5fd; }
-.dot-accepted { background: #1e40af; }
-.dot-completed { background: #1e3a8a; }
+.dot-pending { background: #22c55e; }
+.dot-accepted { background: #16a34a; }
+.dot-completed { background: #15803d; }
 .dot-rejected { background: #ef4444; }
 .dot-cancelled { background: #94a3b8; }
 .more-count {
@@ -321,16 +321,16 @@ watch(() => props.bookings, () => {
 }
 .empty-day {
   text-align: center; color: #94a3b8; padding: 20px 10px;
-  background: #eff6ff; border-radius: 10px; font-size: 0.9rem;
+  background: #f0fdf4; border-radius: 10px; font-size: 0.9rem;
 }
 .event-list { display: flex; flex-direction: column; gap: 8px; }
 .event-card {
   display: flex; gap: 12px; padding: 12px; border-radius: 10px;
-  background: #eff6ff; border-left: 3px solid #cbd5e1;
+  background: #f0fdf4; border-left: 3px solid #cbd5e1;
 }
-.event-pending { border-left-color: #93c5fd; }
-.event-accepted { border-left-color: #1e40af; }
-.event-completed { border-left-color: #1e3a8a; }
+.event-pending { border-left-color: #22c55e; }
+.event-accepted { border-left-color: #16a34a; }
+.event-completed { border-left-color: #15803d; }
 .event-rejected { border-left-color: #ef4444; opacity: 0.7; }
 .event-cancelled { border-left-color: #94a3b8; opacity: 0.7; }
 
@@ -347,14 +347,14 @@ watch(() => props.bookings, () => {
   font-size: 0.65rem; font-weight: 700;
   padding: 2px 6px; border-radius: 5px;
 }
-.status-pending { background: #eff6ff; color: #1e3a8a; }
-.status-accepted { background: #dbeafe; color: #1e3a8a; }
+.status-pending { background: #f0fdf4; color: #15803d; }
+.status-accepted { background: #dcfce7; color: #15803d; }
 .status-rejected { background: #fee2e2; color: #991b1b; }
-.status-completed { background: #dbeafe; color: #1e3a8a; }
+.status-completed { background: #dcfce7; color: #15803d; }
 .status-cancelled { background: #f1f5f9; color: #64748b; }
 
 .event-category {
-  margin: 0 0 4px; font-size: 0.8rem; color: #1e40af; font-weight: 600;
+  margin: 0 0 4px; font-size: 0.8rem; color: #16a34a; font-weight: 600;
 }
 .event-location, .event-notes {
   margin: 4px 0 0; font-size: 0.78rem; color: #64748b; line-height: 1.4;

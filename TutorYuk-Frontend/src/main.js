@@ -31,7 +31,7 @@ window.$toast = function (message, type) {
     else type = 'info'
   }
   const colors = {
-    success: { border: '#1e40af', icon: '✓', iconBg: '#dbeafe' },
+    success: { border: '#16a34a', icon: '✓', iconBg: '#dcfce7' },
     error:   { border: '#ef4444', icon: '✕', iconBg: '#fee2e2' },
     info:    { border: '#64748b', icon: 'i', iconBg: '#f1f5f9' },
   }
@@ -64,8 +64,8 @@ window.$confirm = function (message, options) {
     backdrop.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:10000;display:flex;align-items:center;justify-content:center;animation:backdropIn 0.2s ease;padding:20px;`
     const modal = document.createElement('div')
     modal.style.cssText = `background:white;border-radius:14px;padding:24px;max-width:380px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.15);font-family:'Inter',sans-serif;animation:modalIn 0.2s ease;`
-    const okColor = danger ? '#ef4444' : '#1e40af'
-    const okHover = danger ? '#dc2626' : '#1e3a8a'
+    const okColor = danger ? '#ef4444' : '#16a34a'
+    const okHover = danger ? '#dc2626' : '#15803d'
     modal.innerHTML = `<p style="margin:0 0 20px;color:#0f172a;font-size:15px;line-height:1.5">${message}</p><div style="display:flex;gap:8px;justify-content:flex-end"><button id="confirm-cancel" style="padding:9px 18px;border:1px solid #e2e8f0;background:white;color:#475569;font-weight:600;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px;">${cancelLabel}</button><button id="confirm-ok" style="padding:9px 18px;border:none;background:${okColor};color:white;font-weight:600;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px;">${okLabel}</button></div>`
     backdrop.appendChild(modal)
     document.body.appendChild(backdrop)

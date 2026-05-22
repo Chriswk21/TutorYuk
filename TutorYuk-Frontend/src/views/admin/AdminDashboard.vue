@@ -1,7 +1,7 @@
 <template>
   <div class="admin-container">
     <aside class="admin-sidebar">
-      <div class="admin-brand">TutorDek <span>Admin</span></div>
+      <div class="admin-brand">TutorYuk <span>Admin</span></div>
       <nav class="admin-nav">
         <button :class="{ active: activeTab === 'pending' }" @click="activeTab = 'pending'">
           Pendaftar Baru
@@ -98,7 +98,7 @@ const rejectTutor = async (id) => {
 
 .admin-sidebar { background: #0f172a; color: white; padding: 30px 20px; }
 .admin-brand { font-size: 1.5rem; font-weight: 800; margin-bottom: 40px; }
-.admin-brand span { color: #1e40af; }
+.admin-brand span { color: #16a34a; }
 
 .admin-nav { display: flex; flex-direction: column; gap: 10px; }
 .admin-nav button { 
@@ -115,9 +115,9 @@ table { width: 100%; border-collapse: collapse; }
 th { text-align: left; padding: 15px; border-bottom: 2px solid #f1f5f9; color: #64748b; font-size: 0.85rem; }
 td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
 
-.badge { background: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+.badge { background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
 
 .actions { display: flex; gap: 10px; }
-.btn-approve { background: #1e40af; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.btn-approve { background: #16a34a; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
 .btn-reject { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
 </style>

@@ -3,8 +3,8 @@
     <nav class="navbar">
       <div class="nav-container">
         <router-link to="/" class="brand-container">
-          <img src="./assets/logo.png" alt="TutorDek Logo" class="nav-logo">
-          <span class="brand-name">Tutor<span>Dek</span></span>
+          <img src="./assets/logo.png" alt="TutorYuk Logo" class="nav-logo">
+          <span class="brand-name">Tutor<span>Yuk</span></span>
         </router-link>
 
         <div class="nav-links">
@@ -94,7 +94,7 @@ const handleLogout = async () => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #dbeafe; color: #1e293b; }
+body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
 
 .navbar {
   background: white;
@@ -119,7 +119,7 @@ body { font-family: 'Inter', sans-serif; background-color: #dbeafe; color: #1e29
 .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo { height: 60px; width: auto; object-fit: contain; }
 .brand-name { font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
-.brand-name span { color: #93c5fd; }
+.brand-name span { color: #22c55e; }
 
 .nav-links { display: flex; align-items: center; gap: 25px; }
 .nav-item {
@@ -130,17 +130,17 @@ body { font-family: 'Inter', sans-serif; background-color: #dbeafe; color: #1e29
   transition: color 0.3s;
 }
 
-.nav-item:hover, .router-link-active { color: #1e40af; }
+.nav-item:hover, .router-link-active { color: #16a34a; }
 
 .dash-link {
-  color: #1e40af;
-  background: #eff6ff;
+  color: #16a34a;
+  background: #f0fdf4;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
 .btn-login {
-  background: #1e40af;
+  background: #16a34a;
   color: white;
   padding: 10px 24px;
   border-radius: 10px;
