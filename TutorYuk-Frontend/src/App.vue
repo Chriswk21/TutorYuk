@@ -7,7 +7,12 @@
           <span class="brand-name">Tutor<span>Yuk</span></span>
         </router-link>
 
-        <div class="nav-links">
+        <div class="mobile-menu-btn" @click="toggleMobileMenu">
+          <svg v-if="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+
+        <div :class="['nav-links', { 'nav-links-active': isMobileMenuOpen }]">
           <router-link to="/" class="nav-item">Home</router-link>
           <router-link to="/search" class="nav-item">Cari Tutor</router-link>
 
@@ -59,6 +64,11 @@ const route = useRoute()
 
 const isLoggedIn = ref(false)
 const userRole = ref('')
+const isMobileMenuOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
 
 const checkLoginStatus = () => {
   const status = localStorage.getItem('userLoggedIn')
@@ -79,6 +89,7 @@ onMounted(() => {
 
 watch(() => route.path, () => {
   checkLoginStatus()
+  isMobileMenuOpen.value = false
 })
 
 const handleLogout = async () => {
@@ -164,4 +175,43 @@ body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e29
 .btn-logout-nav:hover { background: #fee2e2; }
 
 .main-content { min-height: calc(100vh - 75px); }
+
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    display: none;
+    align-items: stretch;
+    text-align: center;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  .nav-links-active {
+    display: flex;
+  }
+
+  .nav-logo {
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+}
 </style>

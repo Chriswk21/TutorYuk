@@ -71,17 +71,20 @@ const submitRegistration = async () => {
 </script>
 
 <style scoped>
-.register-container { padding: 60px 20px; display: flex; justify-content: center; background: #f1f5f9; }
-.register-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 700px; }
+.register-container { padding: 60px 20px; display: flex; justify-content: center; background: #f1f5f9; box-sizing: border-box; }
+.register-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 700px; box-sizing: border-box; }
 .form-header { text-align: center; margin-bottom: 30px; }
 .form-header h2 { font-weight: 800; color: #0f172a; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
 .form-group { margin-bottom: 20px; text-align: left; }
 label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #1e293b; }
-input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; outline: none; font-family: inherit; }
+input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; outline: none; font-family: inherit; box-sizing: border-box; }
 input:focus, select:focus, textarea:focus { border-color: #16a34a; }
 .btn-submit { width: 100%; background: #16a34a; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
 .btn-submit:hover { background: #15803d; }
 
-@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { 
+  .form-grid { grid-template-columns: 1fr; } 
+  .register-card { padding: 25px; }
+}
 </style>
