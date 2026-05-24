@@ -67,12 +67,13 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              {{ tutor.rating }}
+              {{ tutor.rating !== null ? tutor.rating : '-' }}
+              <span v-if="tutor.rating !== null" class="rating-count">({{ tutor.total_schedule }})</span>
             </div>
           </div>
           
           <div class="tutor-info">
-            <div class="category-badge">{{ tutor.category }}</div>
+
             <h3>{{ tutor.name }}</h3>
             <p class="bio">{{ tutor.bio }}</p>
             <div class="experience">
@@ -85,14 +86,9 @@
                 <span class="price-value">{{ tutor.priceRange }}</span>
               </div>
               
-              <a 
-                :href="'https://wa.me/' + tutor.phone_number" 
-                target="_blank" 
-                class="btn-wa"
-                @click.stop
-              >
-                Chat WA
-              </a>
+              <span class="btn-detail">
+                Lihat Detail
+              </span>
             </div>
           </div>
         </div>
@@ -101,7 +97,7 @@
 
     <!-- Loading State -->
     <div v-if="isLoading" class="empty-state">
-      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6ba846" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="spin-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
       </svg>
       <p>Memuat data tutor...</p>
@@ -150,14 +146,15 @@ onMounted(async () => {
   try {
     const response = await api.get('/tutor-profile/public')
     tutors.value = response.data.map(profile => ({
-      id: profile.id,
+      id: Number(profile.id),
       name: profile.user?.name || 'Nama tidak tersedia',
       phone_number: profile.phone_number || '',
       category: profile.education || 'Umum',
       bio: profile.bio || '',
       experience: profile.experience || '',
       teaching_preference: profile.teaching_preference || '',
-      rating: 5.0,
+      rating: profile.rating ?? null,
+      total_schedule: profile.total_schedule ?? 0,
       priceRange: 'Diskusikan via WA',
     }))
 
@@ -192,9 +189,9 @@ const toggleSaveTutor = async (tutorProfileId) => {
   } catch (error) {
     console.error('Gagal memproses bookmark tutor:', error)
     if (error.response && error.response.status === 401) {
-      alert('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
+      window.$toast('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
     } else {
-      alert('Terjadi kesalahan saat memproses bookmark.')
+      window.$toast('Terjadi kesalahan saat memproses bookmark.')
     }
   }
 }
@@ -208,7 +205,7 @@ const filteredTutors = computed(() => {
                           tutor.bio.toLowerCase().includes(q)
     
     const matchesCategory = selectedCategory.value === '' || tutor.category === selectedCategory.value
-    const matchesRating = tutor.rating >= parseFloat(minRating.value)
+    const matchesRating = parseFloat(minRating.value) === 0 || (tutor.rating !== null && tutor.rating >= parseFloat(minRating.value))
 
     return matchesSearch && matchesCategory && matchesRating
   })
@@ -276,7 +273,7 @@ const getInitials = (name) => {
 }
 
 .search-bar input:focus {
-  border-color: #6ba846;
+  border-color: #16a34a;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
@@ -298,12 +295,12 @@ const getInitials = (name) => {
 }
 
 .filter-select:focus {
-  border-color: #6ba846;
+  border-color: #16a34a;
 }
 
 .tutor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
 }
 
@@ -329,7 +326,7 @@ const getInitials = (name) => {
 
 .tutor-image {
   height: 120px;
-  background: #f1f8ed;
+  background: #f0fdf4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -382,10 +379,17 @@ const getInitials = (name) => {
   margin-top: -2px;
 }
 
+.rating-count {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
 .initials {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #6ba846;
+  color: #16a34a;
 }
 
 .tutor-info {
@@ -395,8 +399,8 @@ const getInitials = (name) => {
 .category-badge {
   display: inline-block;
   padding: 6px 14px;
-  background: #dbeafe;
-  color: #1e40af;
+  background: #dcfce7;
+  color: #16a34a;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -424,7 +428,7 @@ const getInitials = (name) => {
 .experience {
   font-size: 0.85rem;
   color: #475569;
-  background: #f8fafc;
+  background: #f0fdf4;
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -457,8 +461,8 @@ const getInitials = (name) => {
   font-size: 1rem;
 }
 
-.btn-wa {
-  background: #25d366;
+.btn-detail {
+  background: #16a34a;
   color: white;
   padding: 10px 18px;
   border-radius: 10px;
@@ -468,8 +472,8 @@ const getInitials = (name) => {
   transition: background 0.3s;
 }
 
-.btn-wa:hover {
-  background: #1eb954;
+.btn-detail:hover {
+  background: #15803d;
 }
 
 /* PEMBARUAN: Empty & Loading States */

@@ -104,7 +104,7 @@
 
 .badge {
   background: rgba(59, 130, 246, 0.2);
-  color: #93c5fd;
+  color: #22c55e;
   border: 1px solid rgba(59, 130, 246, 0.3);
   padding: 8px 18px;
   border-radius: 50px;
@@ -124,7 +124,7 @@
 }
 
 .hero h1 span {
-  color: #6ba846;
+  color: #08df5a;
 }
 
 .hero p {
@@ -143,7 +143,7 @@
 }
 
 .btn-primary {
-  background: #1a4f7e;
+  background: #16a34a;
   color: white;
   padding: 16px 32px;
   border-radius: 12px;
@@ -155,7 +155,7 @@
 }
 
 .btn-primary:hover {
-  background: #2563eb;
+  background: #15803d;
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
 }
@@ -212,15 +212,15 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: #f1f8ed; /* Latar biru super muda */
-  color: #1a4f7e; /* Warna ikon biru primer */
+  background: #f0fdf4; /* Latar biru super muda */
+  color: #16a34a; /* Warna ikon biru primer */
   border-radius: 20px; /* Bentuk kotak melengkung (squircle) */
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .info-card:hover .info-icon {
   transform: scale(1.1) rotate(-5deg);
-  background: #1a4f7e;
+  background: #16a34a;
   color: white; /* Ikon berubah putih saat di-hover */
 }
 

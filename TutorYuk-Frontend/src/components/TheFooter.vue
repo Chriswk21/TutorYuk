@@ -4,8 +4,8 @@
       <!-- Kolom 1: Brand -->
       <div class="footer-brand">
         <div class="brand-logo">
-          <img src="../assets/logo.png" alt="TutorYuk Logo" class="f-logo">
-          <span class="brand-name" style="color: white;">Tutor<span class="brand-yuk">Yuk</span></span>
+          <img src="../assets/logo.png" alt="Logo" class="f-logo">
+          <span class="f-name">Tutor<span>Yuk</span></span>
         </div>
         <p>Platform marketplace tutor sebaya untuk membantu mahasiswa meraih prestasi akademik terbaik.</p>
       </div>
@@ -37,7 +37,7 @@
 
 <style scoped>
 .footer {
-  background: #0f172a;
+  background: #1e3a8a;
   color: #f8fafc;
   padding: 60px 0 20px 0;
   margin-top: 50px;
@@ -69,8 +69,10 @@
   font-weight: 800;
 }
 
+.f-name span { color: #22c55e; }
+
 .footer-brand p {
-  color: #94a3b8;
+  color: #cbd5e1;
   max-width: 300px;
   line-height: 1.6;
 }
@@ -85,24 +87,24 @@
 .footer-links li { margin-bottom: 10px; }
 
 .footer-links a {
-  color: #94a3b8;
+  color: #cbd5e1;
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.footer-links a:hover { color: #6ba846; }
+.footer-links a:hover { color: #22c55e; }
 
 .footer-contact p {
-  color: #94a3b8;
+  color: #cbd5e1;
   margin-bottom: 10px;
 }
 
 .footer-bottom {
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 50px;
   padding-top: 20px;
   text-align: center;
-  color: #64748b;
+  color: #cbd5e1;
   font-size: 0.85rem;
 }
 

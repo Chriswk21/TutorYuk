@@ -4,10 +4,15 @@
       <div class="nav-container">
         <router-link to="/" class="brand-container">
           <img src="./assets/logo.png" alt="TutorYuk Logo" class="nav-logo">
-          <span class="brand-name">Tutor<span class="brand-yuk">Yuk</span></span>
+          <span class="brand-name">Tutor<span>Yuk</span></span>
         </router-link>
 
-        <div class="nav-links">
+        <div class="mobile-menu-btn" @click="toggleMobileMenu">
+          <svg v-if="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+
+        <div :class="['nav-links', { 'nav-links-active': isMobileMenuOpen }]">
           <router-link to="/" class="nav-item">Home</router-link>
           <router-link to="/search" class="nav-item">Cari Tutor</router-link>
 
@@ -59,6 +64,11 @@ const route = useRoute()
 
 const isLoggedIn = ref(false)
 const userRole = ref('')
+const isMobileMenuOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
 
 const checkLoginStatus = () => {
   const status = localStorage.getItem('userLoggedIn')
@@ -79,10 +89,11 @@ onMounted(() => {
 
 watch(() => route.path, () => {
   checkLoginStatus()
+  isMobileMenuOpen.value = false
 })
 
-const handleLogout = () => {
-  if (confirm('Yakin ingin keluar?')) {
+const handleLogout = async () => {
+  if (await window.$confirm('Yakin ingin keluar?')) {
     localStorage.clear()
     checkLoginStatus()
     router.push('/login')
@@ -94,7 +105,7 @@ const handleLogout = () => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
 
 .navbar {
   background: white;
@@ -118,23 +129,8 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 
 .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo { height: 60px; width: auto; object-fit: contain; }
-.brand-name { font-size: 2rem; font-weight: 800; color: #1a4f7e; letter-spacing: -0.5px; }
-.brand-yuk { 
-  color: #6ba846; 
-  position: relative;
-  display: inline-block;
-  padding-bottom: 2px;
-}
-.brand-yuk::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -5px;
-  width: calc(100% + 5px);
-  height: 4px;
-  background: linear-gradient(to right, #1a4f7e 0%, #6ba846 100%);
-  border-radius: 2px;
-}
+.brand-name { font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
+.brand-name span { color: #22c55e; }
 
 .nav-links { display: flex; align-items: center; gap: 25px; }
 .nav-item {
@@ -145,17 +141,17 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
   transition: color 0.3s;
 }
 
-.nav-item:hover, .router-link-active { color: #6ba846; }
+.nav-item:hover, .router-link-active { color: #16a34a; }
 
 .dash-link {
-  color: #6ba846;
-  background: #f1f8ed;
+  color: #16a34a;
+  background: #f0fdf4;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
 .btn-login {
-  background: #6ba846;
+  background: #16a34a;
   color: white;
   padding: 10px 24px;
   border-radius: 10px;
@@ -179,4 +175,43 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 .btn-logout-nav:hover { background: #fee2e2; }
 
 .main-content { min-height: calc(100vh - 75px); }
+
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    display: none;
+    align-items: stretch;
+    text-align: center;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  .nav-links-active {
+    display: flex;
+  }
+
+  .nav-logo {
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+}
 </style>

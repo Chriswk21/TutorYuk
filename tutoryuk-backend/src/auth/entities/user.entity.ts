@@ -7,26 +7,29 @@ import {
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn({ type: 'bigint' }) // Sesuai 'bigint' di SQL
+  @PrimaryGeneratedColumn({ type: 'bigint' })
   id!: number;
 
-  @Column({ type: 'varchar' }) // Sesuai 'character varying'
+  @Column({ type: 'varchar' })
   name!: string;
 
-  @Column({ type: 'varchar', unique: true }) // Sesuai 'UNIQUE' di SQL
+  @Column({ type: 'varchar', unique: true })
   email!: string;
 
   @Column({ type: 'varchar' })
   password!: string;
 
-  // Biar gak error sama role_type, kita suruh Postgres buat casting otomatis
   @Column({
     type: 'enum',
-    enum: ['USER', 'TUTOR', 'ADMIN'], // Sesuaikan dengan isi role_type lo
+    enum: ['USER', 'TUTOR', 'ADMIN'],
     default: 'USER',
   })
   role!: string;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'now()' }) // Sesuai SQL lo
+  // Tambahan: phone_number untuk fitur WA reveal
+  @Column({ type: 'varchar', nullable: true })
+  phone_number!: string;
+
+  @CreateDateColumn({ type: 'timestamp', default: () => 'now()' })
   created_at!: Date;
 }
