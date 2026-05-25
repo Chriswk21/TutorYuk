@@ -47,10 +47,43 @@ export class TutorProfileService {
     });
   }
 
-  async findAllPublic() {
-    return this.tutorProfileRepository.find({
-      relations: ['user'], // Join dengan tabel user untuk dapat nama tutor
-    });
+  async findAllPublic(options?: {
+    page?: number;
+    limit?: number;
+    searchQuery?: string;
+    minRating?: number;
+  }) {
+    const page = options?.page || 1;
+    const limit = options?.limit || 10;
+    const searchQuery = options?.searchQuery;
+    const minRating = options?.minRating;
+
+    const query = this.tutorProfileRepository
+      .createQueryBuilder('profile')
+      .leftJoinAndSelect('profile.user', 'user');
+
+    if (searchQuery) {
+      query.andWhere(
+        '(LOWER(user.name) LIKE :search OR LOWER(profile.education) LIKE :search OR LOWER(profile.experience) LIKE :search OR LOWER(profile.bio) LIKE :search)',
+        { search: `%${searchQuery.toLowerCase()}%` }
+      );
+    }
+
+    if (minRating && minRating > 0) {
+      query.andWhere('profile.rating >= :minRating', { minRating });
+    }
+
+    const skip = (page - 1) * limit;
+    query.skip(skip).take(limit);
+
+    const [data, total] = await query.getManyAndCount();
+
+    return {
+      data,
+      total,
+      page,
+      lastPage: Math.ceil(total / limit),
+    };
   }
 
   async findPublicById(id: number) {

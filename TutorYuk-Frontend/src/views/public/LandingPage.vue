@@ -151,7 +151,7 @@
     <!-- CTA Section -->
     <section class="cta-banner">
       <div class="cta-content">
-        <h2>Siap Untuk Meningkatkan Ipk Kampus Kamu?</h2>
+        <h2>Siap Untuk Meningkatkan IPK Kampus Kamu?</h2>
         <p>Bergabunglah dengan ratusan mahasiswa lainnya dan taklukkan ujian sulit dengan bimbingan tutor pilihanmu.</p>
         <div class="cta-actions">
           <router-link to="/search" class="btn-cta-primary">Cari Tutor Sekarang</router-link>
