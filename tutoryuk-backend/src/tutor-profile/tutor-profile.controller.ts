@@ -1,7 +1,8 @@
-import { Controller, Put, Get, Body, UseGuards, Request, Param } from '@nestjs/common';
+import { Controller, Put, Get, Body, UseGuards, Param } from '@nestjs/common';
 import { TutorProfileService } from './tutor-profile.service';
 import { UpdateTutorProfileDto } from './dto/update-tutor-profile.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CurrentUser } from '../auth/current-user.decorator';
 
 @Controller('tutor-profile')
 export class TutorProfileController {
@@ -19,16 +20,13 @@ export class TutorProfileController {
 
   @UseGuards(JwtAuthGuard)
   @Put()
-  async updateProfile(@Request() req, @Body() updateDto: UpdateTutorProfileDto) {
-    // req.user.id didapat dari JWT token hasil decode di JwtStrategy
-    const userId = req.user.id;
-    return this.tutorProfileService.updateProfile(userId, updateDto);
+  async updateProfile(@CurrentUser() user: any, @Body() updateDto: UpdateTutorProfileDto) {
+    return this.tutorProfileService.updateProfile(user.id, updateDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async getProfile(@Request() req) {
-    const userId = req.user.id;
-    return this.tutorProfileService.getProfile(userId);
+  async getProfile(@CurrentUser() user: any) {
+    return this.tutorProfileService.getProfile(user.id);
   }
 }

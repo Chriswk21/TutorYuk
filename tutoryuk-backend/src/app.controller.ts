@@ -13,7 +13,6 @@ export class AppController {
       routes: {
         health: '/health',
         tutorRegistration: '/tutor-registration',
-        supabaseTest: '/supabase/test',
       },
     };
   }

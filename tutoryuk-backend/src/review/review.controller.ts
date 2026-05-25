@@ -5,11 +5,11 @@ import {
   Body,
   Param,
   UseGuards,
-  Request,
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CurrentUser } from '../auth/current-user.decorator';
 
 @Controller('reviews')
 export class ReviewController {
@@ -32,10 +32,10 @@ export class ReviewController {
   @UseGuards(JwtAuthGuard)
   @Post('booking/:bookingId')
   async create(
-    @Request() req,
+    @CurrentUser() user: any,
     @Param('bookingId') id: string,
     @Body() dto: CreateReviewDto,
   ) {
-    return this.reviewService.createReview(req.user.id, +id, dto);
+    return this.reviewService.createReview(user.id, +id, dto);
   }
 }
