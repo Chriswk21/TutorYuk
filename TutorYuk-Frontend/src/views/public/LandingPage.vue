@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../../assets/belajardek.jpg');
+  background-image: url('../../assets/belajardek.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

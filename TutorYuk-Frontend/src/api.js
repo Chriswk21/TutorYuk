@@ -18,3 +18,19 @@ api.interceptors.request.use((config) => {
 }, (error) => {
   return Promise.reject(error);
 });
+
+// Response Interceptor untuk handle token expired (401) atau unauthorized (403)
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      // Hanya redirect jika bukan sedang di halaman login/register
+      if (!window.location.pathname.match(/^\/(login|register)/)) {
+        localStorage.clear();
+        window.$toast?.('Sesi Anda telah berakhir atau akses ditolak. Silakan login kembali.', 'error');
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
