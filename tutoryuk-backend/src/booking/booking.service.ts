@@ -33,7 +33,6 @@ export class BookingService {
     const newBooking = this.bookingRepo.create({
       user_id: userId,
       tutor_profile_id: dto.tutor_profile_id,
-      category_id: dto.category_id,
       schedule_date: new Date(dto.schedule_date),
       notes: dto.notes,
       status: 'PENDING',
@@ -45,7 +44,7 @@ export class BookingService {
   async findMyBookings(userId: number) {
     return this.bookingRepo.find({
       where: { user_id: userId },
-      relations: ['tutorProfile', 'tutorProfile.user', 'category'],
+      relations: ['tutorProfile', 'tutorProfile.user'],
       order: { created_at: 'DESC' },
     });
   }
@@ -64,7 +63,7 @@ export class BookingService {
 
     return this.bookingRepo.find({
       where: { tutor_profile_id: profile.id },
-      relations: ['user', 'category'],
+      relations: ['user'],
       order: { created_at: 'DESC' },
     });
   }
@@ -172,7 +171,7 @@ export class BookingService {
   async findOne(bookingId: number) {
     return this.bookingRepo.findOne({
       where: { id: bookingId },
-      relations: ['tutorProfile', 'user', 'category'],
+      relations: ['tutorProfile', 'user'],
     });
   }
 }

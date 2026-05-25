@@ -131,6 +131,40 @@
       </div>
 
       <div class="tab-content">
+        <!-- ULASAN TAB -->
+        <section v-if="activeTab === 'reviews'" class="reviews-section">
+          <h3>Ulasan & Rating Mahasiswa ({{ reviews.length }})</h3>
+
+          <div v-if="isLoadingReviews" class="empty-state">
+            <div class="spinner"></div>
+            <p>Memuat ulasan...</p>
+          </div>
+
+          <div v-else-if="reviews.length === 0" class="empty-reviews">
+            <div class="empty-icon">⭐</div>
+            <p>Belum ada ulasan masuk dari mahasiswa.</p>
+          </div>
+
+          <div v-else class="reviews-list">
+            <div v-for="rev in reviews" :key="rev.id" class="review-card">
+              <div class="review-header">
+                <div class="student-info">
+                  <div class="small-avatar">{{ getInitials(rev.booking?.user?.name || 'M') }}</div>
+                  <div>
+                    <h4>{{ rev.booking?.user?.name || 'Mahasiswa' }}</h4>
+                    <span>{{ formatDate(rev.created_at) }}</span>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <span v-for="n in 5" :key="n" :class="['star-icon', { active: n <= rev.rating }]">★</span>
+                </div>
+              </div>
+              <p class="review-comment" v-if="rev.comment">"{{ rev.comment }}"</p>
+              <p class="review-comment no-comment" v-else><em>Tidak memberikan komentar tertulis.</em></p>
+            </div>
+          </div>
+        </section>
+
         <!-- EDIT PROFIL TAB -->
         <section v-if="activeTab === 'profile'" class="edit-profile-card">
           <h3>Kelola Informasi Publik</h3>
@@ -177,7 +211,6 @@
                   <div class="small-avatar">{{ getInitials(b.user?.name) }}</div>
                   <div>
                     <h3>{{ b.user?.name || 'Tutee' }}</h3>
-                    <span class="category">{{ b.category?.name || 'Mata Pelajaran' }}</span>
                   </div>
                 </div>
                 <span :class="['status-badge', `status-${b.status.toLowerCase()}`]">
@@ -236,7 +269,6 @@
         <div class="modal-body">
           <div class="tutee-summary">
             <strong>{{ acceptingBooking?.user?.name }}</strong>
-            <small>{{ acceptingBooking?.category?.name }}</small>
           </div>
           <div class="form-group">
             <label>Lokasi / Link Zoom <span class="required">*</span></label>
@@ -288,11 +320,33 @@ const regForm = ref({
   cv_url: '',
 })
 
+const reviews = ref([])
+const isLoadingReviews = ref(false)
+
+const loadReviews = async (tutorProfileId) => {
+  isLoadingReviews.value = true
+  try {
+    const res = await api.get(`/reviews/tutor/${tutorProfileId}`)
+    reviews.value = res.data || []
+  } catch (error) {
+    console.error('Gagal load reviews:', error)
+  } finally {
+    isLoadingReviews.value = false
+  }
+}
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '-'
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+}
+
 const tabs = [
   { key: 'incoming', label: 'Request Masuk' },
   { key: 'active', label: 'Sesi Aktif' },
   { key: 'completed', label: 'Selesai' },
   { key: 'calendar', label: '📅 Kalender' },
+  { key: 'reviews', label: '⭐ Ulasan' },
   { key: 'profile', label: 'Edit Profil' },
 ]
 
@@ -323,6 +377,7 @@ const loadProfile = async () => {
       
       // Load bookings as well since they are approved
       await loadBookings()
+      await loadReviews(res.data.id)
     } else {
       hasProfile.value = false
       await checkRegistrationStatus()
@@ -865,5 +920,111 @@ const getWALink = (phone) => {
   .booking-card { padding: 22px; }
   .small-avatar { width: 50px; height: 50px; font-size: 1.05rem; }
   .edit-profile-card { padding: 35px; }
+}
+
+/* REVIEWS TAB STYLES */
+.reviews-section {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.reviews-section h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 25px;
+}
+
+.empty-reviews {
+  text-align: center;
+  padding: 50px 20px;
+  color: #64748b;
+}
+
+.empty-reviews .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 2px 0;
+}
+
+.student-info span {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  display: block;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.review-rating .star-icon {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+}
+
+.review-rating .star-icon.active {
+  color: #f59e0b;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border-left: 4px solid #16a34a;
+  font-style: italic;
+}
+
+.review-comment.no-comment {
+  border-left-color: #cbd5e1;
+  color: #94a3b8;
 }
 </style>

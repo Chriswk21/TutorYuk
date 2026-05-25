@@ -55,7 +55,6 @@
                 <div class="avatar">{{ getInitials(b.tutorProfile?.user?.name) }}</div>
                 <div>
                   <h3>{{ b.tutorProfile?.user?.name || 'Tutor' }}</h3>
-                  <span class="category">{{ b.category?.name || 'Mata Pelajaran' }}</span>
                 </div>
               </div>
               <span :class="['status-badge', `status-${b.status.toLowerCase()}`]">
@@ -122,7 +121,7 @@
         <div class="modal-body">
           <p class="rating-target">
             untuk <strong>{{ ratingBooking?.tutorProfile?.user?.name }}</strong><br>
-            <small>{{ ratingBooking?.category?.name }} - {{ formatDateTime(ratingBooking?.schedule_date) }}</small>
+            <small>{{ formatDateTime(ratingBooking?.schedule_date) }}</small>
           </p>
           <div class="star-picker">
             <button
@@ -170,7 +169,6 @@ const activeTab = ref('pending')
 const tabs = [
   { key: 'pending', label: 'Menunggu' },
   { key: 'active', label: 'Aktif' },
-  { key: 'completed', label: 'Selesai' },
   { key: 'calendar', label: ' Kalender' },
   { key: 'history', label: 'Riwayat' },
 ]
@@ -207,8 +205,7 @@ const filteredBookings = computed(() => {
   switch (activeTab.value) {
     case 'pending': return bookings.value.filter(b => b.status === 'PENDING')
     case 'active': return bookings.value.filter(b => b.status === 'ACCEPTED')
-    case 'completed': return bookings.value.filter(b => b.status === 'COMPLETED')
-    case 'history': return bookings.value.filter(b => ['REJECTED', 'CANCELLED'].includes(b.status))
+    case 'history': return bookings.value.filter(b => ['COMPLETED', 'REJECTED', 'CANCELLED'].includes(b.status))
     default: return []
   }
 })
@@ -224,7 +221,7 @@ const getCount = (tabKey) => {
   switch (tabKey) {
     case 'pending': return bookings.value.filter(b => b.status === 'PENDING').length
     case 'active': return bookings.value.filter(b => b.status === 'ACCEPTED').length
-    case 'completed': return bookings.value.filter(b => b.status === 'COMPLETED' && !ratedBookingIds.value.has(b.id)).length
+    case 'history': return bookings.value.filter(b => b.status === 'COMPLETED' && !ratedBookingIds.value.has(b.id)).length
     default: return 0
   }
 }
@@ -233,8 +230,7 @@ const getEmptyMessage = () => {
   const messages = {
     pending: 'Belum ada request yang menunggu approval.',
     active: 'Belum ada sesi aktif. Tunggu approval dari tutor.',
-    completed: 'Belum ada sesi yang selesai.',
-    history: 'Belum ada riwayat.',
+    history: 'Belum ada riwayat sesi belajar.',
   }
   return messages[activeTab.value] || ''
 }

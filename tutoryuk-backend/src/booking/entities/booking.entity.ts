@@ -8,7 +8,6 @@ import {
 } from 'typeorm';
 import { User } from '../../auth/entities/user.entity';
 import { TutorProfile } from '../../tutor-profile/entities/tutor-profile.entity';
-import { Category } from '../../category/entities/category.entity';
 
 export type BookingStatus =
   | 'PENDING'
@@ -27,9 +26,6 @@ export class Booking {
 
   @Column({ type: 'bigint' })
   tutor_profile_id: number;
-
-  @Column({ type: 'bigint' })
-  category_id: number;
 
   @Column({ type: 'timestamp' })
   schedule_date: Date;
@@ -57,8 +53,4 @@ export class Booking {
   @ManyToOne(() => TutorProfile)
   @JoinColumn({ name: 'tutor_profile_id' })
   tutorProfile: TutorProfile;
-
-  @ManyToOne(() => Category)
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
 }

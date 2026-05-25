@@ -109,15 +109,6 @@
         </div>
 
         <form @submit.prevent="submitRequest" class="modal-body">
-          <div class="form-group">
-            <label>Mata Pelajaran <span class="required">*</span></label>
-            <select v-model="form.category_id" required>
-              <option value="" disabled>Pilih mata pelajaran</option>
-              <option v-for="cat in categories" :key="cat.id" :value="cat.id">
-                {{ cat.name }}
-              </option>
-            </select>
-          </div>
 
           <div class="form-group">
             <label>Tanggal & Jam Preferensi <span class="required">*</span></label>
@@ -165,13 +156,11 @@ const tutor = ref(null)
 const isLoading = ref(false)
 const errorMessage = ref('')
 const reviews = ref([])
-const categories = ref([])
 
 const showModal = ref(false)
 const isSubmitting = ref(false)
 const formError = ref('')
 const form = ref({
-  category_id: '',
   schedule_date: '',
   notes: '',
 })
@@ -189,10 +178,9 @@ onMounted(async () => {
   isLoading.value = true
   try {
     const id = route.params.id
-    const [profileRes, reviewsRes, categoriesRes] = await Promise.all([
+    const [profileRes, reviewsRes] = await Promise.all([
       api.get(`/tutor-profile/public/${id}`),
       api.get(`/reviews/tutor/${id}`).catch(() => ({ data: [] })),
-      api.get('/categories').catch(() => ({ data: [] })),
     ])
 
     const profile = profileRes.data
@@ -213,7 +201,6 @@ onMounted(async () => {
     }
 
     reviews.value = reviewsRes.data || []
-    categories.value = categoriesRes.data || []
   } catch (error) {
     console.error('Gagal:', error)
     errorMessage.value = 'Gagal memuat profil tutor.'
@@ -234,12 +221,12 @@ const openRequestModal = () => {
 
 const closeModal = () => {
   showModal.value = false
-  form.value = { category_id: '', schedule_date: '', notes: '' }
+  form.value = { schedule_date: '', notes: '' }
 }
 
 const submitRequest = async () => {
-  if (!form.value.category_id || !form.value.schedule_date) {
-    formError.value = 'Mata pelajaran dan tanggal wajib diisi'
+  if (!form.value.schedule_date) {
+    formError.value = 'Tanggal preferensi wajib diisi'
     return
   }
 
@@ -249,7 +236,6 @@ const submitRequest = async () => {
   try {
     await api.post('/bookings', {
       tutor_profile_id: Number(tutor.value.id),
-      category_id: Number(form.value.category_id),
       schedule_date: new Date(form.value.schedule_date).toISOString(),
       notes: form.value.notes,
     })

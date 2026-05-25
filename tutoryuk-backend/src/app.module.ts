@@ -8,7 +8,6 @@ import { TutorProfileModule } from './tutor-profile/tutor-profile.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SavedTutorModule } from './saved-tutor/saved-tutor.module';
-import { CategoryModule } from './category/category.module';
 import { BookingModule } from './booking/booking.module';
 import { ReviewModule } from './review/review.module';
 
@@ -33,7 +32,6 @@ import { ReviewModule } from './review/review.module';
     TutorRegistrationModule,
     TutorProfileModule,
     SavedTutorModule,
-    CategoryModule,
     BookingModule,
     ReviewModule,
   ],
