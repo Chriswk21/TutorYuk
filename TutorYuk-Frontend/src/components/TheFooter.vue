@@ -40,7 +40,6 @@
   background: #0f172a;
   color: #f8fafc;
   padding: 60px 0 20px 0;
-  margin-top: 50px;
 }
 
 .footer-container {
