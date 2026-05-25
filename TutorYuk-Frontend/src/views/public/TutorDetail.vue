@@ -23,7 +23,7 @@
         <div class="profile-card-top">
           <div class="detail-avatar">{{ getInitials(tutor.name) }}</div>
           <h2>{{ tutor.name }}</h2>
-
+          <span class="category-tag">{{ tutor.category }}</span>
 
           <div class="rating-large">
             <span class="star">★</span>

@@ -66,7 +66,7 @@
           </div>
           
           <div class="tutor-info">
-
+            <span class="category-badge">{{ tutor.category }}</span>
             <h3>{{ tutor.name }}</h3>
             <p class="bio">{{ tutor.bio }}</p>
             

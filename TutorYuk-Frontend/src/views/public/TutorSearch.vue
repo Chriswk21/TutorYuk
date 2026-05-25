@@ -73,7 +73,7 @@
           </div>
           
           <div class="tutor-info">
-
+            <span class="category-badge">{{ tutor.category }}</span>
             <h3>{{ tutor.name }}</h3>
             <p class="bio">{{ tutor.bio }}</p>
             <div class="experience">
@@ -158,11 +158,11 @@ onMounted(async () => {
       priceRange: 'Diskusikan via WA',
     }))
 
-    try {
-      const savedResponse = await api.get('/saved-tutors')
-      savedTutorIds.value = savedResponse.data.map(item => Number(item.tutor_profile_id))
-    } catch (saveError) {
-      if (saveError.response?.status !== 401) {
+    if (localStorage.getItem('token')) {
+      try {
+        const savedResponse = await api.get('/saved-tutors')
+        savedTutorIds.value = savedResponse.data.map(item => Number(item.tutor_profile_id))
+      } catch (saveError) {
         console.error('Gagal mengambil data bookmark:', saveError)
       }
     }
@@ -176,6 +176,10 @@ onMounted(async () => {
 })
 
 const toggleSaveTutor = async (tutorProfileId) => {
+  if (!localStorage.getItem('token')) {
+    window.$toast('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.', 'info')
+    return
+  }
   try {
     const isSaved = savedTutorIds.value.includes(tutorProfileId)
     
@@ -188,11 +192,7 @@ const toggleSaveTutor = async (tutorProfileId) => {
     }
   } catch (error) {
     console.error('Gagal memproses bookmark tutor:', error)
-    if (error.response && error.response.status === 401) {
-      window.$toast('Silakan login terlebih dahulu untuk menyimpan tutor favorit Anda.')
-    } else {
-      window.$toast('Terjadi kesalahan saat memproses bookmark.')
-    }
+    window.$toast('Terjadi kesalahan saat memproses bookmark.')
   }
 }
 
