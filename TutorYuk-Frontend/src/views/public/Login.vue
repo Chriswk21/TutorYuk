@@ -8,7 +8,7 @@
 
       <form @submit.prevent="handleLogin">
         <div class="form-group">
-          <label>Email Mahasiswa</label>
+          <label>Email</label>
           <input 
             type="email" 
             v-model="email" 

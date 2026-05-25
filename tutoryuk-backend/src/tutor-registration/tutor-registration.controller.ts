@@ -2,6 +2,7 @@ import { Controller, Post, Get, Patch, Body, Param, UseGuards } from '@nestjs/co
 import { TutorRegistrationService } from './tutor-registration.service';
 import { CreateRegistrationDto } from './dto/create-registration.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CurrentUser } from '../auth/current-user.decorator';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
 
@@ -9,9 +10,16 @@ import { Roles } from '../auth/roles.decorator';
 export class TutorRegistrationController {
   constructor(private readonly service: TutorRegistrationService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Body() dto: CreateRegistrationDto) {
-    return await this.service.register(dto);
+  async create(@CurrentUser() user: any, @Body() dto: CreateRegistrationDto) {
+    return await this.service.register(user.id, dto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('my-status')
+  async getMyStatus(@CurrentUser() user: any) {
+    return await this.service.findMyRegistration(user.id);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -3,7 +3,7 @@
     <div class="register-card">
       <div class="form-header">
         <h2>Daftar Jadi Tutor</h2>
-        <p>Bagikan ilmumu dan bantu sesama mahasiswa.</p>
+        <p>Bagikan ilmumu dan bantu sesama mahasiswa di TutorYuk.</p>
       </div>
 
       <form @submit.prevent="submitRegistration">
@@ -14,13 +14,13 @@
           </div>
 
           <div class="form-group">
-            <label>Email Mahasiswa</label>
+            <label>Email</label>
             <input type="email" v-model="form.email" placeholder="contoh@binus.ac.id" required />
           </div>
 
           <div class="form-group">
             <label>No. WhatsApp</label>
-            <input type="tel" v-model="form.phone_number" placeholder="628..." required />
+            <input type="tel" v-model="form.phone_number" placeholder="Contoh: 081234567890" required />
           </div>
 
           <div class="form-group">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-          <label>Link CV / Portofolio</label>
+          <label>Link CV / Portofolio (Google Drive/Dropbox)</label>
           <input type="url" v-model="form.cv_url" placeholder="https://example.com/cv" required />
         </div>
 
@@ -41,28 +41,52 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { api } from '@/api'
 
+const router = useRouter()
 const form = ref({
-  name: '',
+  name: localStorage.getItem('userName') || '',
   email: '',
   phone_number: '',
   education: '',
   cv_url: '',
 })
 
+onMounted(async () => {
+  if (!localStorage.getItem('token')) {
+    window.$toast('Silakan login terlebih dahulu untuk mengakses pendaftaran tutor.', 'info')
+    router.push('/login')
+    return
+  }
+
+  try {
+    // 1. Cek profil aktif
+    const profileRes = await api.get('/tutor-profile')
+    if (profileRes.data && profileRes.data.id) {
+      window.$toast('Anda sudah terdaftar sebagai tutor aktif.', 'success')
+      router.push('/tutor/dashboard')
+      return
+    }
+
+    // 2. Cek status pendaftaran pending
+    const statusRes = await api.get('/tutor-registration/my-status')
+    if (statusRes.data && statusRes.data.status === 'PENDING') {
+      window.$toast('Pendaftaran Anda sedang ditinjau.', 'info')
+      router.push('/tutor/dashboard')
+      return
+    }
+  } catch (err) {
+    console.error('Gagal memverifikasi status pendaftaran:', err)
+  }
+})
+
 const submitRegistration = async () => {
   try {
     await api.post('/tutor-registration', form.value)
-    window.$toast('Pendaftaran tutor berhasil dikirim. Tim akan meninjaunya.')
-    form.value = {
-      name: '',
-      email: '',
-      phone_number: '',
-      education: '',
-      cv_url: '',
-    }
+    window.$toast('Pendaftaran tutor berhasil dikirim! Silakan tunggu konfirmasi admin.', 'success')
+    router.push('/tutor/dashboard')
   } catch (error) {
     const message = error?.response?.data?.message || 'Gagal mengirim pendaftaran. Silakan coba lagi.'
     window.$toast(message)

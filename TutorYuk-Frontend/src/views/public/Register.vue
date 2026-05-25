@@ -11,7 +11,7 @@
         </div>
 
         <div class="form-group">
-          <label>Email Mahasiswa</label>
+          <label>Email</label>
           <input type="email" v-model="email" placeholder="nim@binus.ac.id" required />
         </div>
 
@@ -66,11 +66,7 @@ const handleRegister = async () => {
 
     window.$toast('Akun berhasil dibuat. Silahkan login.')
 
-    if (role.value === 'tutor') {
-      router.push('/register-tutor')
-    } else {
-      router.push('/login')
-    }
+    router.push('/login')
   } catch (error) {
     const message = error?.response?.data?.message || 'Registrasi gagal. Coba lagi.'
     window.$toast(message)

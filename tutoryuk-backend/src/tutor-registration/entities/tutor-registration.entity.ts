@@ -3,12 +3,22 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { User } from '../../auth/entities/user.entity';
 
 @Entity('tutor_registrations')
 export class TutorRegistration {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: number;
+
+  @Column({ name: 'user_id', type: 'bigint', nullable: true })
+  user_id: number;
+
+  @ManyToOne(() => User, { nullable: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @Column()
   name: string;
