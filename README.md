@@ -105,7 +105,7 @@ erDiagram
     }
 
     USERS ||--o| TUTOR_PROFILES : "has one"
-    USERS ||--o[ TUTOR_REGISTRATIONS : "submits"
+    USERS ||--o{ TUTOR_REGISTRATIONS : "submits"
     USERS ||--o{ BOOKINGS : "requests"
     USERS ||--o{ SAVED_TUTORS : "bookmarks"
     TUTOR_PROFILES ||--o{ BOOKINGS : "receives"
